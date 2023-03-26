@@ -2,29 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:rest_house_rd/src/ui/widgets/my_dropdrown.dart';
 
+import '../widgets/rating.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: const [
-                SizedBox(height: 100),
-                _TextLocation(),
-                _IconNotification(),
-                _Location()
-              ],
-            ),
-            const SizedBox(height: 25),
-            const _Search(),
-            const _Post()
-          ],
+      backgroundColor: Colors.transparent,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            colors: [
+              Color(0xfff5f7f8),
+              Color(0xfff9fafb),
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: const [
+                  SizedBox(height: 100),
+                  _TextLocation(),
+                  _IconNotification(),
+                  _Location()
+                ],
+              ),
+              const SizedBox(height: 25),
+              const _Search(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: const [
+                      _Post(),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -39,16 +60,16 @@ class _Post extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 300,
+        width: 320,
         height: 400,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
           boxShadow: const [
             BoxShadow(
               color: Colors.black,
-              blurRadius: 0,
-              spreadRadius: -15,
+              blurRadius: 30,
+              spreadRadius: -40,
               offset: Offset(0, 0),
             ),
           ],
@@ -56,13 +77,64 @@ class _Post extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(12),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: const Image(
                   image: AssetImage("assets/1.jpg"),
+                  fit: BoxFit.contain,
+                  height: 250,
                 ),
               ),
+            ),
+            Expanded(
+              child: Stack(
+                children: [
+                  const Positioned(
+                    left: 0,
+                    child: Text(
+                      "Masara House",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: 0,
+                    top: 20,
+                    child: Rating(
+                      onRatingSelected: (rating) {},
+                      maximumRating: 5,
+                    ),
+                  ),
+                  const Positioned(
+                    left: 0,
+                    top: 40,
+                    child: Text(
+                      "Mojolaban, Solo",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                  // Row(children: []),
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                Container(
+                  width: 100,
+                  height: 10,
+                  decoration: const BoxDecoration(color: Colors.black),
+                  child: Row(
+                    children: [],
+                  ),
+                )
+              ],
             )
           ],
         ),
