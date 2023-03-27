@@ -68,8 +68,6 @@ class _CustomDropDownState extends State<CustomDropDown> {
     Offset offset = renderBox.localToGlobal(Offset.zero);
     xPosition = offset.dx;
     yPosition = offset.dy;
-    print(yPosition);
-    print(xPosition);
   }
 
   OverlayEntry _createFloatingDropdown() {
@@ -227,12 +225,10 @@ class ArrowClipper extends CustomClipper<Path> {
 
 class ArrowShape extends ShapeBorder {
   @override
-  // TODO: implement dimensions
   EdgeInsetsGeometry get dimensions => throw UnimplementedError();
 
   @override
   Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
-    // TODO: implement getInnerPath
     throw UnimplementedError();
   }
 
@@ -242,13 +238,10 @@ class ArrowShape extends ShapeBorder {
   }
 
   @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
-    // TODO: implement paint
-  }
+  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {}
 
   @override
   ShapeBorder scale(double t) {
-    // TODO: implement scale
     throw UnimplementedError();
   }
 

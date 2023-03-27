@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Rating extends StatefulWidget {
   final int maximumRating;
   final Function(int) onRatingSelected;
+  final double size;
 
   const Rating(
-      {super.key, required this.onRatingSelected, this.maximumRating = 5});
+      {super.key,
+      required this.onRatingSelected,
+      this.maximumRating = 5,
+      required this.size});
 
   @override
   State<Rating> createState() => _Rating();
@@ -17,9 +21,18 @@ class _Rating extends State<Rating> {
 
   Widget _buildRatingStar(int index) {
     if (index < _currentRating) {
-      return const Icon(Ionicons.star, color: Colors.orange);
+      return Icon(
+        (index != widget.maximumRating - 1
+            ? FontAwesomeIcons.solidStar
+            : FontAwesomeIcons.starHalfStroke),
+        color: Colors.orange,
+        size: widget.size,
+      );
     } else {
-      return const Icon(Ionicons.star_outline);
+      return Icon(
+        FontAwesomeIcons.star,
+        size: widget.size,
+      );
     }
   }
 

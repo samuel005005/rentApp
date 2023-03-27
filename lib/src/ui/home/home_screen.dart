@@ -18,6 +18,8 @@ class HomeScreen extends StatelessWidget {
             colors: [
               Colors.white,
               Colors.white,
+              Colors.white,
+              Colors.white,
               Color(0xfff5f7f8),
               Color(0xfff9fafb),
             ],
@@ -37,6 +39,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 25),
               const _Search(),
+              const SizedBox(height: 25),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -62,8 +65,8 @@ class _Post extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: 320,
-        height: 400,
+        width: 330,
+        height: 420,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
@@ -78,66 +81,85 @@ class _Post extends StatelessWidget {
         ),
         child: Column(
           children: [
+            const SizedBox(width: 350),
             Padding(
               padding: const EdgeInsets.all(12),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: const Image(
                   image: AssetImage("assets/1.jpg"),
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
+                  width: 300,
                   height: 250,
                 ),
               ),
             ),
             Expanded(
-              child: Stack(
-                children: [
-                  const Positioned(
-                    left: 0,
-                    child: Text(
-                      "Masara House",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Stack(
+                  children: [
+                    const Positioned(
+                      left: 0,
+                      child: Text(
+                        "Masara House",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    right: 0,
-                    top: 20,
-                    child: Rating(
-                      onRatingSelected: (rating) {},
-                      maximumRating: 5,
-                    ),
-                  ),
-                  const Positioned(
-                    left: 0,
-                    top: 40,
-                    child: Text(
-                      "Mojolaban, Solo",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.grey,
+                    Positioned(
+                      right: 0,
+                      top: 20,
+                      child: Rating(
+                        onRatingSelected: (rating) {},
+                        maximumRating: 5,
+                        size: 17,
                       ),
                     ),
-                  ),
-                  // Row(children: []),
-                ],
+                    Positioned(
+                      left: 0,
+                      top: 33,
+                      child: Text(
+                        "Mojolaban, Solo",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.grey.withOpacity(0.7),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    _DetailPost(
+                        description: "4 Bedroom", iconData: Ionicons.bed),
+                    SizedBox(width: 10),
+                    _DetailPost(description: "Wifi", iconData: Ionicons.wifi),
+                  ],
+                ),
                 Container(
-                  width: 100,
-                  height: 10,
-                  decoration: const BoxDecoration(color: Colors.black),
-                  child: Row(
-                    children: [],
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xffff717f),
+                      border: Border.all(color: const Color(0xffe9e9e9))),
+                  child: const Icon(
+                    Ionicons.chevron_forward,
+                    color: Colors.white,
                   ),
                 )
               ],
-            )
+            ),
+            const SizedBox(height: 10),
           ],
         ),
       ),
@@ -164,6 +186,36 @@ class _Post extends StatelessWidget {
   }
 }
 
+class _DetailPost extends StatelessWidget {
+  final String description;
+  final IconData iconData;
+  const _DetailPost({required this.description, required this.iconData});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: const Color(0xfffdfdfd),
+          border: Border.all(color: const Color(0xffe9e9e9))),
+      child: Row(
+        children: [
+          Icon(
+            iconData,
+            color: const Color(0xffff717f),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            description,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _Search extends StatelessWidget {
   const _Search();
 
@@ -176,6 +228,8 @@ class _Search extends StatelessWidget {
           child: TextField(
             cursorColor: const Color(0xfffd6d7a),
             decoration: InputDecoration(
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
                 borderSide: const BorderSide(
@@ -203,10 +257,10 @@ class _Search extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 20),
+        const SizedBox(width: 30),
         Container(
-          width: 60,
-          height: 60,
+          width: 50,
+          height: 50,
           decoration: BoxDecoration(
             color: const Color(0xfffd6d7a),
             borderRadius: BorderRadius.circular(15),
@@ -221,7 +275,6 @@ class _Search extends StatelessWidget {
           ),
           child: Container(
             alignment: Alignment.center,
-            height: 100,
             child: const Icon(
               Ionicons.search_outline,
               size: 32,
@@ -229,16 +282,14 @@ class _Search extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 10),
+        const SizedBox(width: 30),
       ],
     );
   }
 }
 
 class _Location extends StatelessWidget {
-  const _Location({
-    super.key,
-  });
+  const _Location();
 
   @override
   Widget build(BuildContext context) {
