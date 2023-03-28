@@ -19,12 +19,12 @@ class Post extends StatelessWidget {
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(right: 20),
       child: Container(
         width: screen.width * .8,
         height: screen.height * .55,
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(15),
           boxShadow: const [
             BoxShadow(
@@ -45,7 +45,7 @@ class Post extends StatelessWidget {
                   image: AssetImage(image),
                   fit: BoxFit.cover,
                   width: screen.width * .66,
-                  height: screen.height * .3,
+                  height: screen.height * .26,
                 ),
               ),
             ),
@@ -97,7 +97,7 @@ class Post extends StatelessWidget {
                   children: details,
                 ),
                 Container(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: const Color(0xffff717f),

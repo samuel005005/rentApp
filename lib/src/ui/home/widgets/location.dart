@@ -23,8 +23,10 @@ class Location extends StatelessWidget {
                 const SizedBox(width: 18),
                 Text(
                   locationText,
-                  style: const TextStyle(
-                      fontSize: 28, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.black.withOpacity(.7),
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold),
                 )
               ],
             ),
