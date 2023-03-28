@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screen = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
@@ -46,18 +47,44 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 25),
               const Search(placeHolder: 'Search favorite house...'),
               const SizedBox(height: 25),
-              const Expanded(
+              Expanded(
                 child: SingleChildScrollView(
-                  child: Post(
-                    image: "assets/1.jpg",
-                    title: "Masara House",
-                    direction: "Mojolaban, Solo",
-                    details: [
-                      DetailPost(
-                          description: "4 Bedroom", iconData: Ionicons.bed),
-                      SizedBox(width: 10),
-                      DetailPost(description: "Wifi", iconData: Ionicons.wifi),
-                    ],
+                  child: SizedBox(
+                    width: screen.width,
+                    height: screen.height * .53,
+                    child: PageView(
+                      controller: PageController(
+                        viewportFraction: 0.8,
+                      ),
+                      children: const [
+                        Post(
+                          image: "assets/1.jpg",
+                          title: "Masara House",
+                          direction: "Mojolaban, Solo",
+                          details: [
+                            DetailPost(
+                                description: "4 Bedroom",
+                                iconData: Ionicons.bed),
+                            SizedBox(width: 10),
+                            DetailPost(
+                                description: "Wifi", iconData: Ionicons.wifi),
+                          ],
+                        ),
+                        Post(
+                          image: "assets/1.jpg",
+                          title: "Masara House",
+                          direction: "Mojolaban, Solo",
+                          details: [
+                            DetailPost(
+                                description: "4 Bedroom",
+                                iconData: Ionicons.bed),
+                            SizedBox(width: 10),
+                            DetailPost(
+                                description: "Wifi", iconData: Ionicons.wifi),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               )

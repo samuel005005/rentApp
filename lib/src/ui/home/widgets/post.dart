@@ -21,8 +21,8 @@ class Post extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: screen.width * .7,
-        height: screen.height * .5,
+        width: screen.width * .8,
+        height: screen.height * .53,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
@@ -37,7 +37,6 @@ class Post extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const SizedBox(width: 350),
             Padding(
               padding: const EdgeInsets.all(12),
               child: ClipRRect(
@@ -45,8 +44,8 @@ class Post extends StatelessWidget {
                 child: Image(
                   image: AssetImage(image),
                   fit: BoxFit.cover,
-                  width: 300,
-                  height: 250,
+                  width: screen.width * .7,
+                  height: screen.height * .3,
                 ),
               ),
             ),
