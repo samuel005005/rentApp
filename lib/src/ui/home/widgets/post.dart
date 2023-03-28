@@ -22,9 +22,9 @@ class Post extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         width: screen.width * .8,
-        height: screen.height * .53,
+        height: screen.height * .55,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.red,
           borderRadius: BorderRadius.circular(15),
           boxShadow: const [
             BoxShadow(
@@ -44,7 +44,7 @@ class Post extends StatelessWidget {
                 child: Image(
                   image: AssetImage(image),
                   fit: BoxFit.cover,
-                  width: screen.width * .7,
+                  width: screen.width * .66,
                   height: screen.height * .3,
                 ),
               ),
@@ -59,7 +59,7 @@ class Post extends StatelessWidget {
                       child: Text(
                         title,
                         style: const TextStyle(
-                          fontSize: 22,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
