@@ -3,20 +3,21 @@ import 'package:ionicons/ionicons.dart';
 
 class Search extends StatelessWidget {
   final String placeHolder;
+  final double iconSize;
 
-  const Search({super.key, required this.placeHolder});
-
+  const Search({super.key, required this.placeHolder, required this.iconSize});
+  final double _sizebutton = 1.5625;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const SizedBox(width: 30),
+        SizedBox(width: iconSize * 0.9375),
         Flexible(
           child: TextField(
             cursorColor: const Color(0xfffd6d7a),
             decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+              contentPadding: EdgeInsets.symmetric(
+                  vertical: iconSize * 0.5, horizontal: iconSize * 0.3125),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
                 borderSide: const BorderSide(
@@ -46,8 +47,8 @@ class Search extends StatelessWidget {
         ),
         const SizedBox(width: 30),
         Container(
-          width: 50,
-          height: 50,
+          width: iconSize * _sizebutton,
+          height: iconSize * _sizebutton,
           decoration: BoxDecoration(
             color: const Color(0xfffd6d7a),
             borderRadius: BorderRadius.circular(15),
@@ -62,14 +63,14 @@ class Search extends StatelessWidget {
           ),
           child: Container(
             alignment: Alignment.center,
-            child: const Icon(
+            child: Icon(
               Ionicons.search_outline,
-              size: 32,
+              size: iconSize,
               color: Colors.white,
             ),
           ),
         ),
-        const SizedBox(width: 30),
+        SizedBox(width: iconSize * 0.9375),
       ],
     );
   }

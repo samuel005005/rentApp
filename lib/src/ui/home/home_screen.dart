@@ -6,7 +6,7 @@ import 'package:rest_house_rd/src/ui/home/widgets/icon_notification.dart';
 import 'package:rest_house_rd/src/ui/home/widgets/location.dart';
 import 'package:rest_house_rd/src/ui/home/widgets/post.dart';
 import 'package:rest_house_rd/src/ui/home/widgets/search.dart';
-import 'package:rest_house_rd/src/ui/home/widgets/text_location.dart';
+import 'package:rest_house_rd/src/ui/widgets/my_dropdrown.dart';
 import 'package:rest_house_rd/src/ui/widgets/rating.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,8 +14,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
+    final _height = screen.height;
+    print(_height);
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -36,28 +37,48 @@ class HomeScreen extends StatelessWidget {
               Column(
                 children: [
                   Stack(
-                    children: const [
-                      SizedBox(height: 100),
-                      TextLocation(textLocation: "Location"),
-                      IconNotification(),
-                      Location(
-                        locationText: "Solo, Indonesia",
+                    children: [
+                      SizedBox(
+                          width: double.infinity,
+                          height: _height > 411 ? 100 : 80),
+                      const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: MyDropdown(
+                          text: "Location",
+                          fontSize: 18,
+                          width: 140,
+                          iconSize: 18,
+                        ),
+                      ),
+                      const Positioned(
+                        top: 25,
+                        right: 15,
+                        child: IconNotification(iconSize: 30),
+                      ),
+                      const Positioned(
+                        bottom: 0,
+                        child: Location(
+                          locationText: "Solo, Indonesia",
+                          iconSize: 32,
+                        ),
                       )
                     ],
                   ),
                   const SizedBox(height: 25),
-                  const Search(placeHolder: 'Search favorite house...'),
+                  const Search(
+                      placeHolder: 'Search favorite house...', iconSize: 32),
                   const SizedBox(height: 10),
                 ],
               ),
               Flexible(
                 fit: FlexFit.tight,
                 child: ListView(
+                  physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
                   children: [
                     SizedBox(
                       width: screen.width,
-                      height: screen.height * .54,
+                      height: screen.height * .46,
                       child: PageView(
                         physics: const BouncingScrollPhysics(),
                         controller: PageController(

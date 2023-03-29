@@ -3,7 +3,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MyDropdown extends StatefulWidget {
   final String text;
-  const MyDropdown({super.key, required this.text});
+  final double fontSize;
+  final double width;
+  final double iconSize;
+  const MyDropdown(
+      {super.key,
+      required this.text,
+      required this.fontSize,
+      required this.width,
+      required this.iconSize});
 
   @override
   State<MyDropdown> createState() => _MyDropdownState();
@@ -15,7 +23,7 @@ class _MyDropdownState extends State<MyDropdown> {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        width: 140,
+        width: widget.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -24,17 +32,17 @@ class _MyDropdownState extends State<MyDropdown> {
           children: <Widget>[
             Text(
               widget.text,
-              style: const TextStyle(
-                  color: Color(0xff575757),
-                  fontSize: 18,
+              style: TextStyle(
+                  color: const Color(0xff575757),
+                  fontSize: widget.fontSize,
                   fontWeight: FontWeight.w600,
                   fontFamily: 'Alilato Arabic Regular'),
             ),
             const Spacer(),
-            const Icon(
+            Icon(
               FontAwesomeIcons.chevronDown,
-              color: Color(0xffd9d9d9),
-              size: 18,
+              color: const Color(0xffd9d9d9),
+              size: widget.iconSize,
             ),
           ],
         ),
