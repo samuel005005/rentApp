@@ -11,7 +11,7 @@ class Search extends StatelessWidget {
     return Row(
       children: [
         const SizedBox(width: 30),
-        Expanded(
+        Flexible(
           child: TextField(
             cursorColor: const Color(0xfffd6d7a),
             decoration: InputDecoration(

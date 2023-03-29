@@ -11,13 +11,11 @@ import 'package:rest_house_rd/src/ui/widgets/rating.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.transparent,
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -49,49 +47,44 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 25),
                   const Search(placeHolder: 'Search favorite house...'),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 10),
                 ],
               ),
-              SizedBox(
-                width: screen.width,
-                height: screen.height * .48,
-                child: Wrap(
-                  alignment: WrapAlignment.spaceAround,
+              Flexible(
+                fit: FlexFit.tight,
+                child: ListView(
+                  shrinkWrap: true,
                   children: [
-                    SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: SizedBox(
-                        width: screen.width,
-                        height: screen.height * .45,
-                        child: PageView(
-                          physics: const BouncingScrollPhysics(),
-                          controller: PageController(
-                            viewportFraction: 0.8,
-                          ),
-                          children: List.generate(
-                            5,
-                            (index) => const Post(
-                              image: "assets/1.jpg",
-                              title: "Masara House",
-                              direction: "Mojolaban, Solo",
-                              details: [
-                                DetailPost(
-                                    description: "4 Bedroom",
-                                    iconData: Ionicons.bed),
-                                SizedBox(width: 10),
-                                DetailPost(
-                                    description: "Wifi",
-                                    iconData: Ionicons.wifi),
-                              ],
-                            ),
+                    SizedBox(
+                      width: screen.width,
+                      height: screen.height * .54,
+                      child: PageView(
+                        physics: const BouncingScrollPhysics(),
+                        controller: PageController(
+                          viewportFraction: 0.8,
+                        ),
+                        children: List.generate(
+                          5,
+                          (index) => const Post(
+                            image: "assets/1.jpg",
+                            title: "Masara House",
+                            direction: "Mojolaban, Solo",
+                            details: [
+                              DetailPost(
+                                  description: "4 Bedroom",
+                                  iconData: Ionicons.bed),
+                              SizedBox(width: 10),
+                              DetailPost(
+                                  description: "Wifi", iconData: Ionicons.wifi),
+                            ],
                           ),
                         ),
                       ),
                     ),
+                    const PopularHouse()
                   ],
                 ),
-              ),
-              const PopularHouse()
+              )
             ],
           ),
         ),
@@ -107,85 +100,81 @@ class PopularHouse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Popular House",
-                style: TextStyle(
-                  color: Colors.black.withOpacity(.7),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Popular House",
+            style: TextStyle(
+              color: Colors.black.withOpacity(.7),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 15),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black,
+                  blurRadius: 30,
+                  spreadRadius: -40,
+                  offset: Offset(0, 0),
                 ),
-              ),
-              const SizedBox(height: 15),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 30,
-                      spreadRadius: -40,
-                      offset: Offset(0, 0),
+              ],
+            ),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: const Image(
+                      image: AssetImage("assets/1.jpg"),
+                      fit: BoxFit.cover,
+                      width: 100,
+                      height: 100,
                     ),
-                  ],
+                  ),
                 ),
-                child: Row(
+                const SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: const Image(
-                          image: AssetImage("assets/1.jpg"),
-                          fit: BoxFit.cover,
-                          width: 100,
-                          height: 100,
-                        ),
+                    const SizedBox(width: 100),
+                    Text(
+                      "Valito House",
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(.7),
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(width: 100),
-                        Text(
-                          "Valito House",
-                          style: TextStyle(
-                            color: Colors.black.withOpacity(.7),
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          "Benowo, Surabaya",
-                          style: TextStyle(
-                            color: Colors.black.withOpacity(.3),
-                            fontSize: 17,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Rating(
-                          onRatingSelected: (rating) {},
-                          maximumRating: 5,
-                          size: 17,
-                        ),
-                      ],
-                    )
+                    const SizedBox(height: 10),
+                    Text(
+                      "Benowo, Surabaya",
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(.3),
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Rating(
+                      onRatingSelected: (rating) {},
+                      maximumRating: 5,
+                      size: 17,
+                    ),
                   ],
-                ),
-              ),
-            ],
+                )
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

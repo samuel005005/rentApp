@@ -49,7 +49,7 @@ class Post extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
+            Flexible(
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Stack(

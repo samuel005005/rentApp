@@ -9,7 +9,7 @@ class DetailPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: const Color(0xfffdfdfd),
