@@ -18,7 +18,6 @@ class Post extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
-
     return Padding(
       padding: const EdgeInsets.only(right: 30),
       child: Container(
