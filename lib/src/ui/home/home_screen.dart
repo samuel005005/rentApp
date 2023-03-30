@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -128,11 +127,6 @@ class PopularHouse extends StatelessWidget {
     final width = screen.width;
     final height = screen.height;
 
-    if (kDebugMode) {
-      print('_width---> $width');
-      print('_height---> $height');
-      print(width * 0.03);
-    }
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Column(

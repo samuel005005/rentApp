@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rest_house_rd/src/ui/home/details_post_screen.dart';
 import 'package:rest_house_rd/src/ui/home/home_screen.dart';
 
 void main() {

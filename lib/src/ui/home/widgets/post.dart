@@ -21,9 +21,6 @@ class Post extends StatelessWidget {
       final width = contraints.maxWidth;
       final height = contraints.maxHeight;
       final sizeTitle = width * 0.06;
-
-      // print('_width $_width');
-      // print('_height $_height');
       return Padding(
         padding: const EdgeInsets.only(right: 30),
         child: Container(

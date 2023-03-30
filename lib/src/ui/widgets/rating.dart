@@ -39,7 +39,10 @@ class _Rating extends State<Rating> {
   Widget _buildBody() {
     final stars = List<Widget>.generate(widget.maximumRating, (index) {
       return GestureDetector(
-        child: _buildRatingStar(index),
+        child: Padding(
+          padding: const EdgeInsets.only(right: 5),
+          child: _buildRatingStar(index),
+        ),
         onTap: () {
           setState(() {
             _currentRating = index + 1;

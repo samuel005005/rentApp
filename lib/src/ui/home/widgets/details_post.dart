@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class DetailPost extends StatelessWidget {
@@ -12,13 +11,8 @@ class DetailPost extends StatelessWidget {
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
     final width = screen.width;
-    final height = screen.height;
+    // final height = screen.height;
     final sizeTitle = width * 0.035;
-
-    if (kDebugMode) {
-      print('_width $width');
-      print('_height $height');
-    }
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
