@@ -1,13 +1,25 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class DetailPost extends StatelessWidget {
   final String description;
   final IconData iconData;
+
   const DetailPost(
       {super.key, required this.description, required this.iconData});
 
   @override
   Widget build(BuildContext context) {
+    final screen = MediaQuery.of(context).size;
+    final width = screen.width;
+    final height = screen.height;
+    final sizeTitle = width * 0.035;
+
+    if (kDebugMode) {
+      print('_width $width');
+      print('_height $height');
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       decoration: BoxDecoration(
@@ -20,10 +32,13 @@ class DetailPost extends StatelessWidget {
             iconData,
             color: const Color(0xffff717f),
           ),
-          const SizedBox(width: 5),
+          SizedBox(width: width * 0.013),
           Text(
             description,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: sizeTitle,
+            ),
           ),
         ],
       ),

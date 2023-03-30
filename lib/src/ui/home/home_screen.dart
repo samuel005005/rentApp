@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -14,11 +15,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
-    final _width = screen.width;
-    final _height = screen.height;
+    final width = screen.width;
+    final height = screen.height;
 
-    print('_width---> $_width');
-    print('_height---> $_height');
+    if (kDebugMode) {
+      print('_width---> $width');
+      print('_height---> $height');
+      print(width * 0.03);
+    }
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -43,34 +48,35 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       SizedBox(
                           width: double.infinity,
-                          height: _height > 411 ? 100 : 80),
-                      const Padding(
-                        padding: EdgeInsets.all(10.0),
+                          height: height > 411 ? 100 : 80),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
                         child: MyDropdown(
                           text: "Location",
-                          fontSize: 18,
-                          width: 140,
-                          iconSize: 18,
+                          fontSize: width * 0.040,
+                          width: width * 0.31,
+                          iconSize: width * 0.043,
                         ),
                       ),
-                      const Positioned(
-                        top: 25,
-                        right: 15,
-                        child: IconNotification(iconSize: 30),
+                      Positioned(
+                        top: height * 0.03,
+                        right: width * 0.04,
+                        child: IconNotification(iconSize: width * 0.08),
                       ),
-                      const Positioned(
+                      Positioned(
                         bottom: 0,
                         child: Location(
                           locationText: "Solo, Indonesia",
-                          iconSize: 35,
+                          iconSize: width * 0.08,
                         ),
                       )
                     ],
                   ),
-                  const SizedBox(height: 25),
-                  const Search(
-                      placeHolder: 'Search favorite house...', iconSize: 28),
-                  const SizedBox(height: 10),
+                  SizedBox(height: height * 0.03),
+                  Search(
+                      placeHolder: 'Search favorite house...',
+                      iconSize: width * 0.07),
+                  SizedBox(height: height * 0.03),
                 ],
               ),
               Flexible(
@@ -89,16 +95,16 @@ class HomeScreen extends StatelessWidget {
                         ),
                         children: List.generate(
                           5,
-                          (index) => const Post(
+                          (index) => Post(
                             image: "assets/1.jpg",
                             title: "Masara House",
                             direction: "Mojolaban, Solo",
                             details: [
-                              DetailPost(
+                              const DetailPost(
                                   description: "4 Bedroom",
                                   iconData: Ionicons.bed),
-                              SizedBox(width: 10),
-                              DetailPost(
+                              SizedBox(width: width * 0.025),
+                              const DetailPost(
                                   description: "Wifi", iconData: Ionicons.wifi),
                             ],
                           ),
