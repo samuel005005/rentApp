@@ -14,8 +14,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
+    final _width = screen.width;
     final _height = screen.height;
-    print(_height);
+
+    print('_width---> $_width');
+    print('_height---> $_height');
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -59,14 +62,14 @@ class HomeScreen extends StatelessWidget {
                         bottom: 0,
                         child: Location(
                           locationText: "Solo, Indonesia",
-                          iconSize: 32,
+                          iconSize: 35,
                         ),
                       )
                     ],
                   ),
                   const SizedBox(height: 25),
                   const Search(
-                      placeHolder: 'Search favorite house...', iconSize: 32),
+                      placeHolder: 'Search favorite house...', iconSize: 28),
                   const SizedBox(height: 10),
                 ],
               ),

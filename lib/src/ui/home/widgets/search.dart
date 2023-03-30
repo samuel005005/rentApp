@@ -45,7 +45,7 @@ class Search extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 30),
+        SizedBox(width: iconSize * 0.9375),
         Container(
           width: iconSize * _sizebutton,
           height: iconSize * _sizebutton,

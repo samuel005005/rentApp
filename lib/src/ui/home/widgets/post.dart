@@ -18,11 +18,12 @@ class Post extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
+
     return Padding(
-      padding: const EdgeInsets.only(right: 20),
+      padding: const EdgeInsets.only(right: 30),
       child: Container(
-        width: screen.width * .8,
-        height: screen.height * .55,
+        width: double.infinity,
+        height: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
@@ -44,7 +45,7 @@ class Post extends StatelessWidget {
                 child: Image(
                   image: AssetImage(image),
                   fit: BoxFit.cover,
-                  width: screen.width * .66,
+                  width: double.infinity,
                   height: screen.height * .26,
                 ),
               ),
