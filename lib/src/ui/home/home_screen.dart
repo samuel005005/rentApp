@@ -18,12 +18,6 @@ class HomeScreen extends StatelessWidget {
     final width = screen.width;
     final height = screen.height;
 
-    if (kDebugMode) {
-      print('_width---> $width');
-      print('_height---> $height');
-      print(width * 0.03);
-    }
-
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -130,6 +124,15 @@ class PopularHouse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screen = MediaQuery.of(context).size;
+    final width = screen.width;
+    final height = screen.height;
+
+    if (kDebugMode) {
+      print('_width---> $width');
+      print('_height---> $height');
+      print(width * 0.03);
+    }
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Column(
@@ -139,11 +142,11 @@ class PopularHouse extends StatelessWidget {
             "Popular House",
             style: TextStyle(
               color: Colors.black.withOpacity(.7),
-              fontSize: 20,
+              fontSize: width * 0.05,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 15),
+          SizedBox(height: height * 0.019),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
@@ -161,39 +164,39 @@ class PopularHouse extends StatelessWidget {
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(10),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: const Image(
-                      image: AssetImage("assets/1.jpg"),
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image(
+                      image: const AssetImage("assets/1.jpg"),
                       fit: BoxFit.cover,
-                      width: 100,
-                      height: 100,
+                      width: width * 0.25,
+                      height: height * 0.12,
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: width * 0.025),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(width: 100),
+                    SizedBox(width: width * 0.25),
                     Text(
                       "Valito House",
                       style: TextStyle(
                         color: Colors.black.withOpacity(.7),
-                        fontSize: 17,
+                        fontSize: width * 0.043,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: height * 0.012),
                     Text(
                       "Benowo, Surabaya",
                       style: TextStyle(
                         color: Colors.black.withOpacity(.3),
-                        fontSize: 17,
+                        fontSize: width * 0.043,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: height * 0.012),
                     Rating(
                       onRatingSelected: (rating) {},
                       maximumRating: 5,
