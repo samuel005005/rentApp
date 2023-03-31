@@ -76,7 +76,7 @@ class Post extends StatelessWidget {
                         child: Rating(
                           onRatingSelected: (rating) {},
                           maximumRating: 5,
-                          size: width * 0.054,
+                          size: width * 0.045,
                         ),
                       ),
                       Positioned(

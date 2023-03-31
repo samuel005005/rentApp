@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rest_house_rd/src/ui/home/details_post_screen.dart';
 import 'package:rest_house_rd/src/ui/home/home_screen.dart';
 
 void main() {
@@ -15,10 +14,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true),
       title: 'Rent App',
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }

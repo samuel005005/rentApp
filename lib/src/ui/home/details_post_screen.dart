@@ -57,13 +57,13 @@ class DetailPostScreen extends StatelessWidget {
               [
                 Container(
                   padding: const EdgeInsets.all(25),
-                  height: 500,
+                  height: 120,
                   child: Stack(
                     children: [
                       const Text(
                         "Masara House",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -82,16 +82,16 @@ class DetailPostScreen extends StatelessWidget {
                           children: [
                             const Icon(
                               Ionicons.location_sharp,
-                              size: 18,
+                              size: 16,
                               color: Color(0xfffd6d7a),
                             ),
                             const SizedBox(width: 10),
                             Text(
                               "Mojolaban, Solo",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 fontWeight: FontWeight.normal,
-                                color: Colors.grey.withOpacity(0.7),
+                                color: Colors.grey.withOpacity(0.9),
                               ),
                             ),
                           ],
@@ -100,6 +100,95 @@ class DetailPostScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text(
+                    'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno.',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.grey.withOpacity(0.9),
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Text(
+                    "Facilities",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: 100,
+                  child: ListView(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    children: List.generate(
+                      5,
+                      (index) => Row(
+                        children: [
+                          const SizedBox(width: 15),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: const Image(
+                                image: AssetImage('assets/1.jpg'),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 35),
+                Row(
+                  children: [
+                    const SizedBox(width: 20),
+                    Column(
+                      children: const [
+                        Text(
+                          "Price",
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "\$750",
+                          style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const Expanded(child: SizedBox()),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xfffd6d7a),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      width: 150,
+                      height: 50,
+                      child: const Center(
+                        child: Text(
+                          'Book Now',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                  ],
+                )
               ],
             ),
           ),

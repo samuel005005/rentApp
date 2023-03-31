@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                       Positioned(
                         top: height * 0.03,
                         right: width * 0.04,
-                        child: IconNotification(iconSize: width * 0.08),
+                        child: IconNotification(iconSize: width * 0.06),
                       ),
                       Positioned(
                         bottom: 0,
@@ -194,7 +194,7 @@ class PopularHouse extends StatelessWidget {
                     Rating(
                       onRatingSelected: (rating) {},
                       maximumRating: 5,
-                      size: 17,
+                      size: width * 0.035,
                     ),
                   ],
                 )
