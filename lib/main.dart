@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rest_house_rd/src/ui/home/home_screen.dart';
+import 'package:rest_house_rd/src/ui/home/detail_preview_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
       title: 'Rent App',
-      home: const HomeScreen(),
+      home: const DetailPreviewScreen(),
     );
   }
 }

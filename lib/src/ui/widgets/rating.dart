@@ -22,9 +22,9 @@ class _Rating extends State<Rating> {
   Widget _buildRatingStar(int index) {
     if (index < _currentRating) {
       return Icon(
-        (index != widget.maximumRating - 1
-            ? FontAwesomeIcons.solidStar
-            : FontAwesomeIcons.starHalfStroke),
+        (index == _currentRating - 1
+            ? FontAwesomeIcons.starHalfStroke
+            : FontAwesomeIcons.solidStar),
         color: Colors.orange,
         size: widget.size,
       );
