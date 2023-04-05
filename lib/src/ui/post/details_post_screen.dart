@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:rest_house_rd/src/ui/routes/app_routes.dart';
 
 import '../widgets/rating.dart';
 
@@ -25,25 +26,35 @@ class DetailPostScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     SizedBox(width: width),
-                    Image(
-                      width: width,
-                      fit: BoxFit.fitWidth,
-                      image: const AssetImage('assets/1.jpg'),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.postView);
+                      },
+                      child: Image(
+                        width: width,
+                        fit: BoxFit.fitWidth,
+                        image: const AssetImage('assets/1.jpg'),
+                      ),
                     ),
                     Positioned(
                       left: 20,
                       top: 50,
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.transparent.withOpacity(0.4),
-                        ),
-                        child: const Icon(
-                          Icons.chevron_left,
-                          size: 35,
-                          color: Colors.white,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.transparent.withOpacity(0.4),
+                          ),
+                          child: const Icon(
+                            Icons.chevron_left,
+                            size: 35,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

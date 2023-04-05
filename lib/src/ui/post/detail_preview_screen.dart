@@ -29,6 +29,7 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
+
     animateController.forward();
     return Scaffold(
       body: Stack(
@@ -75,7 +76,6 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
                         setState(() {});
                         animateController.reset();
                         animateController.forward();
-                        print(animateController.status);
                       },
                       child:
                           SmallImage(url: 'assets/small/$index.jpg')), //110x100
