@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 class DetailPreviewScreen extends StatefulWidget {
@@ -12,23 +13,36 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
   late AnimationController animateController;
 
   late String _currentImage;
-  late Animation<double> animation;
+  late Animation<double> falling;
+  late Animation<double> bouncing;
 
   @override
   void initState() {
     _currentImage = 'assets/0.jpg';
     animateController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 120));
+        vsync: this, duration: const Duration(milliseconds: 1500));
 
-    animation = Tween<double>(begin: -100, end: 0).animate(
-        CurvedAnimation(parent: animateController, curve: Curves.easeOut));
+    falling = Tween<double>(begin: -200, end: -50).animate(CurvedAnimation(
+        parent: animateController,
+        curve: const Interval(0, 0.3, curve: Curves.linear)));
+
+    bouncing = Tween<double>(begin: -50, end: 0).animate(CurvedAnimation(
+        parent: animateController,
+        curve: const Interval(0.3, 1, curve: Curves.elasticOut)));
 
     super.initState();
   }
 
   @override
+  void dispose() {
+    animateController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
+    final double backButtonSize = screen.width * 0.121654501;
 
     animateController.forward();
     return Scaffold(
@@ -38,7 +52,8 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
             animation: animateController,
             builder: (context, child) {
               return Transform.translate(
-                offset: Offset(animation.value, 0),
+                offset: Offset(
+                    falling.value == -50 ? bouncing.value : falling.value, 0),
                 child: Image(
                   width: screen.width,
                   height: screen.height,
@@ -57,6 +72,28 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 25,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 35,
+            left: 20,
+            child: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                width: backButtonSize,
+                height: backButtonSize,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.transparent.withOpacity(0.4),
+                ),
+                child: const Icon(
+                  Icons.chevron_left,
+                  size: 35,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

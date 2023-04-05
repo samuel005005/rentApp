@@ -13,6 +13,12 @@ class DetailPostScreen extends StatelessWidget {
     final maxHeight = screen.height * .45;
     final minHeight = screen.height * .44;
     final width = screen.width;
+
+    final double backButtonSize = width * 0.121654501;
+    final double containerSizeTitle = maxHeight * 0.316169828;
+    final double sizeTitle = maxHeight * 0.0586618;
+    final double facileSize = maxHeight * 0.263474857;
+
     return Scaffold(
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
@@ -44,8 +50,8 @@ class DetailPostScreen extends StatelessWidget {
                           Navigator.pop(context);
                         },
                         child: Container(
-                          width: 50,
-                          height: 50,
+                          width: backButtonSize,
+                          height: backButtonSize,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.transparent.withOpacity(0.4),
@@ -68,13 +74,13 @@ class DetailPostScreen extends StatelessWidget {
               [
                 Container(
                   padding: const EdgeInsets.all(25),
-                  height: 120,
+                  height: containerSizeTitle,
                   child: Stack(
                     children: [
-                      const Text(
+                      Text(
                         "Masara House",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: sizeTitle,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -91,16 +97,16 @@ class DetailPostScreen extends StatelessWidget {
                         top: 40,
                         child: Row(
                           children: [
-                            const Icon(
+                            Icon(
                               Ionicons.location_sharp,
-                              size: 16,
-                              color: Color(0xfffd6d7a),
+                              size: sizeTitle / 1.3,
+                              color: const Color(0xfffd6d7a),
                             ),
                             const SizedBox(width: 10),
                             Text(
                               "Mojolaban, Solo",
                               style: TextStyle(
-                                fontSize: 14,
+                                fontSize: sizeTitle / 1.3,
                                 fontWeight: FontWeight.normal,
                                 color: Colors.grey.withOpacity(0.9),
                               ),
@@ -116,25 +122,26 @@ class DetailPostScreen extends StatelessWidget {
                   child: Text(
                     'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno.',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: sizeTitle / 1.6,
                       fontWeight: FontWeight.normal,
                       color: Colors.grey.withOpacity(0.9),
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: Text(
                     "Facilities",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: sizeTitle / 1.2,
                     ),
                   ),
                 ),
                 SizedBox(
                   width: double.infinity,
-                  height: 100,
+                  height: facileSize,
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
@@ -159,21 +166,21 @@ class DetailPostScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 35),
+                SizedBox(height: facileSize * 0.35),
                 Row(
                   children: [
                     const SizedBox(width: 20),
                     Column(
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           "Price",
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
                           "\$750",
                           style: TextStyle(
-                              fontSize: 22,
+                              fontSize: sizeTitle,
                               color: Colors.black,
                               fontWeight: FontWeight.bold),
                         ),
@@ -185,8 +192,8 @@ class DetailPostScreen extends StatelessWidget {
                         color: const Color(0xfffd6d7a),
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      width: 150,
-                      height: 50,
+                      width: width * 0.364963504,
+                      height: maxHeight * 0.131752306,
                       child: const Center(
                         child: Text(
                           'Book Now',
