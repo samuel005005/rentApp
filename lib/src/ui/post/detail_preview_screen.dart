@@ -13,22 +13,25 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
   late AnimationController animateController;
 
   late String _currentImage;
-  late Animation<double> falling;
+  late Animation<double> zoom;
   late Animation<double> bouncing;
-
+  late Animation<double> bouncingRevert;
   @override
   void initState() {
     _currentImage = 'assets/0.jpg';
     animateController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1500));
-
-    falling = Tween<double>(begin: -200, end: -50).animate(CurvedAnimation(
+    zoom = Tween<double>(begin: 0.5, end: 1).animate(
+      CurvedAnimation(
         parent: animateController,
-        curve: const Interval(0, 0.3, curve: Curves.linear)));
+        curve: const Interval(0, 0.8, curve: Curves.linear),
+      ),
+    );
 
-    bouncing = Tween<double>(begin: -50, end: 0).animate(CurvedAnimation(
+    bouncing = Tween<double>(begin:0.8, end: 1).animate(CurvedAnimation(
         parent: animateController,
-        curve: const Interval(0.3, 1, curve: Curves.elasticOut)));
+        curve: const Interval(0, 1, curve: Curves.elasticOut)));
+
 
     super.initState();
   }
@@ -46,19 +49,22 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
 
     animateController.forward();
     return Scaffold(
+      backgroundColor: const Color(0xfff5f7f8),
       body: Stack(
         children: [
           AnimatedBuilder(
             animation: animateController,
             builder: (context, child) {
-              return Transform.translate(
-                offset: Offset(
-                    falling.value == -50 ? bouncing.value : falling.value, 0),
-                child: Image(
-                  width: screen.width,
-                  height: screen.height,
-                  fit: BoxFit.fill,
-                  image: AssetImage(_currentImage),
+              return Transform.scale(
+                scale: bouncing.value,
+                child: Opacity(
+                  opacity: zoom.value,
+                  child: Image(
+                    width: screen.width,
+                    height: screen.height,
+                    fit: BoxFit.fill,
+                    image: AssetImage(_currentImage),
+                  ),
                 ),
               );
             },
@@ -76,8 +82,8 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
             ),
           ),
           Positioned(
-            top: 35,
             left: 20,
+            top: 50,
             child: InkWell(
               onTap: () {
                 Navigator.pop(context);
@@ -128,6 +134,7 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
 
 class SmallImage extends StatelessWidget {
   final String url;
+
   const SmallImage({super.key, required this.url});
 
   @override
