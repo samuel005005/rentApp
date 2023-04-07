@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:provider/provider.dart';
+import 'package:rest_house_rd/src/ui/theme/theme_changer.dart';
 import 'package:rest_house_rd/src/ui/widgets/rating.dart';
 
 class Post extends StatelessWidget {
@@ -17,6 +19,7 @@ class Post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = context.read<ThemeChanger>().isDarkTheme;
     return LayoutBuilder(builder: (context, contraints) {
       final width = contraints.maxWidth;
       final height = contraints.maxHeight;
@@ -27,7 +30,7 @@ class Post extends StatelessWidget {
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: (isDark) ? Colors.black : Colors.white,
             borderRadius: BorderRadius.circular(15),
             boxShadow: const [
               BoxShadow(
@@ -102,15 +105,15 @@ class Post extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: details,
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xffff717f),
-                        border: Border.all(color: const Color(0xffe9e9e9))),
-                    child: const Icon(
-                      Ionicons.chevron_forward,
-                      color: Colors.white,
+                  SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Icon(
+                        Ionicons.chevron_forward,
+                        color: Colors.white,
+                      ),
                     ),
                   )
                 ],

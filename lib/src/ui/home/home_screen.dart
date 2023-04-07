@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:provider/provider.dart';
 
 import 'package:rest_house_rd/src/ui/home/widgets/details_post.dart';
 import 'package:rest_house_rd/src/ui/home/widgets/icon_notification.dart';
@@ -7,11 +8,13 @@ import 'package:rest_house_rd/src/ui/home/widgets/location.dart';
 import 'package:rest_house_rd/src/ui/home/widgets/post.dart';
 import 'package:rest_house_rd/src/ui/home/widgets/search.dart';
 import 'package:rest_house_rd/src/ui/routes/app_routes.dart';
+import 'package:rest_house_rd/src/ui/theme/theme_changer.dart';
 import 'package:rest_house_rd/src/ui/widgets/my_dropdrown.dart';
 import 'package:rest_house_rd/src/ui/widgets/rating.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
@@ -19,44 +22,17 @@ class HomeScreen extends StatelessWidget {
     final height = screen.height;
 
     return Scaffold(
-      body: Background(
-        child: SafeArea(
-          child: Column(
-            children: [
-              HomeHeader(height: height, width: width),
-              Flexible(
-                fit: FlexFit.tight,
-                child: BodyHome(height: height, width: width),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Background extends StatelessWidget {
-  const Background({super.key, required this.child});
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          colors: [
-            Colors.white,
-            Colors.white,
-            Colors.white,
-            Colors.white,
-            Color(0xfff5f7f8),
-            Color(0xfff9fafb),
+      body: SafeArea(
+        child: Column(
+          children: [
+            HomeHeader(height: height, width: width),
+            Flexible(
+              fit: FlexFit.tight,
+              child: BodyHome(height: height, width: width),
+            )
           ],
         ),
       ),
-      child: child,
     );
   }
 }
@@ -76,47 +52,6 @@ class BodyHome extends StatelessWidget {
         LastPosts(height: height, width: width),
         const PopularHouses()
       ],
-    );
-  }
-}
-
-class LastPosts extends StatelessWidget {
-  const LastPosts({super.key, required this.height, required this.width});
-
-  final double height;
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: height * .46,
-      child: PageView(
-        physics: const BouncingScrollPhysics(),
-        controller: PageController(
-          viewportFraction: 0.8,
-        ),
-        children: List.generate(
-          5,
-          (index) => InkWell(
-            focusColor: Colors.red,
-            onTap: () {
-              Navigator.pushNamed(context, AppRoutes.post);
-            },
-            child: Post(
-              image: "assets/1.jpg",
-              title: "Masara House",
-              direction: "Mojolaban, Solo",
-              details: [
-                const DetailPost(
-                    description: "4 Bedroom", iconData: Ionicons.bed),
-                SizedBox(width: width * 0.025),
-                const DetailPost(description: "Wifi", iconData: Ionicons.wifi),
-              ],
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
@@ -165,6 +100,46 @@ class HomeHeader extends StatelessWidget {
   }
 }
 
+class LastPosts extends StatelessWidget {
+  const LastPosts({super.key, required this.height, required this.width});
+
+  final double height;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      height: height * .46,
+      child: PageView(
+        physics: const BouncingScrollPhysics(),
+        controller: PageController(
+          viewportFraction: 0.8,
+        ),
+        children: List.generate(
+          5,
+          (index) => InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutes.post);
+            },
+            child: Post(
+              image: "assets/1.jpg",
+              title: "Masara House",
+              direction: "Mojolaban, Solo",
+              details: [
+                const DetailPost(
+                    description: "4 Bedroom", iconData: Ionicons.bed),
+                SizedBox(width: width * 0.025),
+                const DetailPost(description: "Wifi", iconData: Ionicons.wifi),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class PopularHouses extends StatelessWidget {
   const PopularHouses({super.key});
 
@@ -173,7 +148,7 @@ class PopularHouses extends StatelessWidget {
     final screen = MediaQuery.of(context).size;
     final width = screen.width;
     final height = screen.height;
-
+    final isDark = context.read<ThemeChanger>().isDarkTheme;
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Column(
@@ -182,7 +157,7 @@ class PopularHouses extends StatelessWidget {
           Text(
             "Popular House",
             style: TextStyle(
-              color: Colors.black.withOpacity(.7),
+              color: (isDark) ? Colors.white : Colors.black.withOpacity(.7),
               fontSize: width * 0.05,
               fontWeight: FontWeight.bold,
             ),
@@ -191,7 +166,7 @@ class PopularHouses extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: (isDark) ? Colors.black : Colors.white,
               borderRadius: BorderRadius.circular(15),
               boxShadow: const [
                 BoxShadow(
@@ -218,6 +193,7 @@ class PopularHouse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = context.read<ThemeChanger>().isDarkTheme;
     return Row(
       children: [
         Padding(
@@ -240,7 +216,7 @@ class PopularHouse extends StatelessWidget {
             Text(
               "Valito House",
               style: TextStyle(
-                color: Colors.black.withOpacity(.7),
+                color: (isDark) ? Colors.white : Colors.black.withOpacity(.7),
                 fontSize: width * 0.043,
                 fontWeight: FontWeight.bold,
               ),
@@ -249,7 +225,9 @@ class PopularHouse extends StatelessWidget {
             Text(
               "Benowo, Surabaya",
               style: TextStyle(
-                color: Colors.black.withOpacity(.3),
+                color: (isDark)
+                    ? Colors.white.withOpacity(.3)
+                    : Colors.black.withOpacity(.3),
                 fontSize: width * 0.043,
               ),
             ),

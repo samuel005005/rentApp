@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:rest_house_rd/src/ui/routes/app_routes.dart';
+import 'package:rest_house_rd/src/ui/theme/colors.dart';
 
 import '../widgets/rating.dart';
 
@@ -100,7 +101,7 @@ class DetailPostScreen extends StatelessWidget {
                             Icon(
                               Ionicons.location_sharp,
                               size: sizeTitle / 1.3,
-                              color: const Color(0xfffd6d7a),
+                              color: ColorsApp.primaryColor,
                             ),
                             const SizedBox(width: 10),
                             Text(
@@ -180,22 +181,19 @@ class DetailPostScreen extends StatelessWidget {
                         Text(
                           "\$750",
                           style: TextStyle(
-                              fontSize: sizeTitle,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
+                            fontSize: sizeTitle,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
                     const Expanded(child: SizedBox()),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xfffd6d7a),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
+                    SizedBox(
                       width: width * 0.364963504,
                       height: maxHeight * 0.131752306,
-                      child: const Center(
-                        child: Text(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: const Text(
                           'Book Now',
                           style: TextStyle(
                             color: Colors.white,

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:rest_house_rd/src/ui/theme/colors.dart';
 
 class Search extends StatelessWidget {
   final String placeHolder;
   final double iconSize;
 
   const Search({super.key, required this.placeHolder, required this.iconSize});
-  final double _sizebutton = 1.5625;
+
+  final double _sizeButton = 1.5625;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,7 +17,7 @@ class Search extends StatelessWidget {
         SizedBox(width: iconSize * 0.9375),
         Flexible(
           child: TextField(
-            cursorColor: const Color(0xfffd6d7a),
+            cursorColor: ColorsApp.primaryColor,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(
                   vertical: iconSize * 0.5, horizontal: iconSize * 0.3125),
@@ -27,9 +30,9 @@ class Search extends StatelessWidget {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   width: 1,
-                  color: Color(0xfffd6d7a),
+                  color: ColorsApp.primaryColor,
                 ),
               ),
               errorBorder: const OutlineInputBorder(
@@ -47,26 +50,18 @@ class Search extends StatelessWidget {
         ),
         SizedBox(width: iconSize * 0.9375),
         Container(
-          width: iconSize * _sizebutton,
-          height: iconSize * _sizebutton,
-          decoration: BoxDecoration(
-            color: const Color(0xfffd6d7a),
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 50,
-                spreadRadius: -15,
-                offset: Offset(0, 0),
+          alignment: Alignment.center,
+          width: iconSize * _sizeButton,
+          height: iconSize * _sizeButton,
+          child: TextButton(
+            onPressed: () {},
+            child: Container(
+              alignment: Alignment.center,
+              child: Icon(
+                Ionicons.search_outline,
+                size: iconSize,
+                color: Colors.white,
               ),
-            ],
-          ),
-          child: Container(
-            alignment: Alignment.center,
-            child: Icon(
-              Ionicons.search_outline,
-              size: iconSize,
-              color: Colors.white,
             ),
           ),
         ),

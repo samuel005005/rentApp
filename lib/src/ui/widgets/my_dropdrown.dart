@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:rest_house_rd/src/ui/theme/theme_changer.dart';
 
 class MyDropdown extends StatefulWidget {
   final String text;
@@ -20,6 +22,7 @@ class MyDropdown extends StatefulWidget {
 class _MyDropdownState extends State<MyDropdown> {
   @override
   Widget build(BuildContext context) {
+    final isDark = context.read<ThemeChanger>().isDarkTheme;
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -33,7 +36,7 @@ class _MyDropdownState extends State<MyDropdown> {
             Text(
               widget.text,
               style: TextStyle(
-                  color: const Color(0xff575757),
+                  color: (isDark) ? Colors.white : const Color(0xff575757),
                   fontSize: widget.fontSize,
                   fontWeight: FontWeight.w600,
                   fontFamily: 'Alilato Arabic Regular'),
@@ -41,7 +44,6 @@ class _MyDropdownState extends State<MyDropdown> {
             const Spacer(),
             Icon(
               FontAwesomeIcons.chevronDown,
-              color: const Color(0xffd9d9d9),
               size: widget.iconSize,
             ),
           ],

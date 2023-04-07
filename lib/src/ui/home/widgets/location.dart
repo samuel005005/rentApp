@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:provider/provider.dart';
+import 'package:rest_house_rd/src/ui/theme/colors.dart';
+import 'package:rest_house_rd/src/ui/theme/theme_changer.dart';
 
 class Location extends StatelessWidget {
   final String locationText;
@@ -10,6 +13,7 @@ class Location extends StatelessWidget {
   final double _space = 0.5625;
   @override
   Widget build(BuildContext context) {
+    final isDark = context.read<ThemeChanger>().isDarkTheme;
     return Row(
       children: [
         Padding(
@@ -19,13 +23,14 @@ class Location extends StatelessWidget {
               Icon(
                 Ionicons.location_sharp,
                 size: iconSize,
-                color: const Color(0xfffd6d7a),
+                color: ColorsApp.primaryColor,
               ),
               SizedBox(width: iconSize * _space),
               Text(
                 locationText,
                 style: TextStyle(
-                    color: Colors.black.withOpacity(.7),
+                    color:
+                        (isDark) ? Colors.white : Colors.black.withOpacity(.7),
                     fontSize: iconSize * _sizeText,
                     fontWeight: FontWeight.bold),
               )

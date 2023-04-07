@@ -17,15 +17,15 @@ class DetailPost extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: const Color(0xfffdfdfd),
-          border: Border.all(color: const Color(0xffe9e9e9))),
+        borderRadius: BorderRadius.circular(10),
+        // color: const Color(0xfffdfdfd),
+        border: Border.all(
+          color: const Color(0xffe9e9e9),
+        ),
+      ),
       child: Row(
         children: [
-          Icon(
-            iconData,
-            color: const Color(0xffff717f),
-          ),
+          Icon(iconData),
           SizedBox(width: width * 0.013),
           Text(
             description,
