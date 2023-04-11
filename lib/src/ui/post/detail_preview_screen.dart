@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 class DetailPreviewScreen extends StatefulWidget {
@@ -28,10 +27,9 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
       ),
     );
 
-    bouncing = Tween<double>(begin:0.8, end: 1).animate(CurvedAnimation(
+    bouncing = Tween<double>(begin: 0.8, end: 1).animate(CurvedAnimation(
         parent: animateController,
         curve: const Interval(0, 1, curve: Curves.elasticOut)));
-
 
     super.initState();
   }
@@ -73,7 +71,7 @@ class _DetailPreviewScreenState extends State<DetailPreviewScreen>
             top: screen.height * .78,
             left: 20,
             child: const Text(
-              "Detail Preview",
+              "Vista previa detallada",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

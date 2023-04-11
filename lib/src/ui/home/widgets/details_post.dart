@@ -12,10 +12,10 @@ class DetailPost extends StatelessWidget {
     final screen = MediaQuery.of(context).size;
     final width = screen.width;
     // final height = screen.height;
-    final sizeTitle = width * 0.035;
+    final sizeTitle = width * 0.030;
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         // color: const Color(0xfffdfdfd),

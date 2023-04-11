@@ -17,7 +17,7 @@ class DetailPostScreen extends StatelessWidget {
 
     final double backButtonSize = width * 0.121654501;
     final double containerSizeTitle = maxHeight * 0.316169828;
-    final double sizeTitle = maxHeight * 0.0586618;
+    final double sizeTitle = maxHeight * 0.057;
     final double facileSize = maxHeight * 0.263474857;
 
     return Scaffold(
@@ -79,7 +79,7 @@ class DetailPostScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       Text(
-                        "Masara House",
+                        "Apartamento alquiler",
                         style: TextStyle(
                           fontSize: sizeTitle,
                           fontWeight: FontWeight.bold,
@@ -105,7 +105,7 @@ class DetailPostScreen extends StatelessWidget {
                             ),
                             const SizedBox(width: 10),
                             Text(
-                              "Mojolaban, Solo",
+                              "Santo Domingo Norte",
                               style: TextStyle(
                                 fontSize: sizeTitle / 1.3,
                                 fontWeight: FontWeight.normal,
@@ -121,7 +121,7 @@ class DetailPostScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
-                    'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto Lorem Ipsum es simplemente el texto de relleno.',
+                    'Apto. Nuevo para estrenar,  2do. Piso, 3 habitaciónes, un baño, sala comedor, cocina, área de lavado, balcon, un parqueo.',
                     style: TextStyle(
                       fontSize: sizeTitle / 1.6,
                       fontWeight: FontWeight.normal,
@@ -133,7 +133,7 @@ class DetailPostScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: Text(
-                    "Facilities",
+                    "Instalaciones",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: sizeTitle / 1.2,
@@ -174,12 +174,12 @@ class DetailPostScreen extends StatelessWidget {
                     Column(
                       children: [
                         const Text(
-                          "Price",
+                          "Precio",
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          "\$750",
+                          "RD\$9,000",
                           style: TextStyle(
                             fontSize: sizeTitle,
                             fontWeight: FontWeight.bold,
@@ -194,7 +194,7 @@ class DetailPostScreen extends StatelessWidget {
                       child: TextButton(
                         onPressed: () {},
                         child: const Text(
-                          'Book Now',
+                          'Contactar',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

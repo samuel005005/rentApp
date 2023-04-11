@@ -88,7 +88,7 @@ class Post extends StatelessWidget {
                         child: Text(
                           direction,
                           style: TextStyle(
-                            fontSize: height * 0.043,
+                            fontSize: height * 0.040,
                             fontWeight: FontWeight.normal,
                             color: Colors.grey.withOpacity(0.7),
                           ),

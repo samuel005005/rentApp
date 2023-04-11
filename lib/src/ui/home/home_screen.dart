@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 
@@ -72,9 +73,9 @@ class HomeHeader extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: MyDropdown(
-                text: "Location",
+                text: "Localización",
                 fontSize: width * 0.040,
-                width: width * 0.31,
+                width: width * 0.38,
                 iconSize: width * 0.043,
               ),
             ),
@@ -86,14 +87,14 @@ class HomeHeader extends StatelessWidget {
             Positioned(
               bottom: 0,
               child: Location(
-                locationText: "Solo, Indonesia",
-                iconSize: width * 0.08,
+                locationText: "Santo Domingo Norte",
+                iconSize: width * 0.07,
               ),
             )
           ],
         ),
         SizedBox(height: height * 0.03),
-        Search(placeHolder: 'Search favorite house...', iconSize: width * 0.07),
+        Search(placeHolder: 'Buscar casa ideal...', iconSize: width * 0.07),
         SizedBox(height: height * 0.03),
       ],
     );
@@ -124,13 +125,14 @@ class LastPosts extends StatelessWidget {
             },
             child: Post(
               image: "assets/1.jpg",
-              title: "Masara House",
-              direction: "Mojolaban, Solo",
+              title: "RD\$9,000",
+              direction: "Santo Domingo Norte",
               details: [
                 const DetailPost(
-                    description: "4 Bedroom", iconData: Ionicons.bed),
-                SizedBox(width: width * 0.025),
-                const DetailPost(description: "Wifi", iconData: Ionicons.wifi),
+                    description: "2 Habitaciones", iconData: Ionicons.bed),
+                SizedBox(width: width * 0.022),
+                const DetailPost(
+                    description: "1 Baño", iconData: FontAwesomeIcons.bath),
               ],
             ),
           ),
@@ -155,7 +157,7 @@ class PopularHouses extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Popular House",
+            "Casa Popular",
             style: TextStyle(
               color: (isDark) ? Colors.white : Colors.black.withOpacity(.7),
               fontSize: width * 0.05,
@@ -214,7 +216,7 @@ class PopularHouse extends StatelessWidget {
           children: [
             SizedBox(width: width * 0.25),
             Text(
-              "Valito House",
+              "RD\$5,000",
               style: TextStyle(
                 color: (isDark) ? Colors.white : Colors.black.withOpacity(.7),
                 fontSize: width * 0.043,
@@ -223,7 +225,7 @@ class PopularHouse extends StatelessWidget {
             ),
             SizedBox(height: height * 0.012),
             Text(
-              "Benowo, Surabaya",
+              "Barrio Nuevo",
               style: TextStyle(
                 color: (isDark)
                     ? Colors.white.withOpacity(.3)
