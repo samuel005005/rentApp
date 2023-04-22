@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: currentTheme,
       title: 'Rent App RD',
-      initialRoute: AppRoutes.home,
+      initialRoute: AppRoutes.login,
       routes: AppPages.pages,
     );
   }

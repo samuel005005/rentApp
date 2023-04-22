@@ -56,6 +56,27 @@ class ThemeChanger extends ChangeNotifier {
       iconTheme: IconThemeData(
         color: ColorsApp.primaryColor,
       ),
+      inputDecorationTheme: InputDecorationTheme(
+        border: const UnderlineInputBorder(),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 22,
+          horizontal: 26,
+        ),
+        prefixIconColor: ColorsApp.primaryColor,
+        hintStyle: TextStyle(
+          color: ColorsApp.secundaryColor,
+        ),
+        prefixStyle: TextStyle(
+          color: ColorsApp.secundaryColor,
+        ),
+        suffixStyle: TextStyle(
+          color: ColorsApp.secundaryColor,
+        ),
+        focusColor: ColorsApp.secundaryColor,
+        labelStyle: TextStyle(
+          color: ColorsApp.secundaryColor,
+        ),
+      ),
     );
   }
 

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:rest_house_rd/src/ui/theme/colors.dart';
 
@@ -8,10 +10,13 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
+          _Background(),
           Positioned(
-            left: 40,
+            left: 25,
+            right: 25,
             top: screen.height * 0.3,
             child: const Form(),
           ),
@@ -26,39 +31,42 @@ class Form extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipPath(
-      clipper: _FormClipper(),
-      child: Container(
-        width: 300,
-        height: 400,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.red,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black,
-              blurRadius: 30,
-              spreadRadius: -15,
-              offset: Offset(0, 0),
+    return SizedBox(
+      width: 400,
+      height: 500,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Login",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 30),
+          Column(
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Enter your email',
+                  prefixIcon: Icon(Icons.email_outlined),
+                ),
+              ),
+              const SizedBox(height: 30),
+              TextFormField(
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  hintText: 'Enter your password ',
+                  prefixIcon: Icon(Icons.lock_outline),
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
-}
-
-class _FormClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-
-    path.lineTo(0, size.height);
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }
 
 class _Background extends StatelessWidget {
