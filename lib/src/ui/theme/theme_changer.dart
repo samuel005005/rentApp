@@ -42,6 +42,9 @@ class ThemeChanger extends ChangeNotifier {
 
   static ThemeData get customTheme {
     return ThemeData(useMaterial3: true).copyWith(
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: ColorsApp.primaryColor,
+      ),
       primaryColor: ColorsApp.primaryColor,
       colorScheme: const ColorScheme.light().copyWith(),
       scaffoldBackgroundColor: const Color(0xfff5f7f8),
@@ -57,22 +60,36 @@ class ThemeChanger extends ChangeNotifier {
         color: ColorsApp.primaryColor,
       ),
       inputDecorationTheme: InputDecorationTheme(
-        border: const UnderlineInputBorder(),
+        border: UnderlineInputBorder(
+          borderRadius: BorderRadius.circular(10)
+              .copyWith(bottomRight: const Radius.circular(0)),
+          borderSide: BorderSide(
+            strokeAlign: 1,
+            color: ColorsApp.primaryColor,
+          ),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderRadius: BorderRadius.circular(10)
+              .copyWith(bottomRight: const Radius.circular(0)),
+          borderSide: BorderSide(
+            color: ColorsApp.primaryColor,
+          ),
+        ),
         contentPadding: const EdgeInsets.symmetric(
           vertical: 22,
           horizontal: 26,
         ),
-        prefixIconColor: ColorsApp.primaryColor,
+        prefixIconColor: Colors.grey.shade600,
         hintStyle: TextStyle(
-          color: ColorsApp.secundaryColor,
+          color: Colors.grey.shade600,
         ),
         prefixStyle: TextStyle(
-          color: ColorsApp.secundaryColor,
+          color: ColorsApp.primaryColor,
         ),
         suffixStyle: TextStyle(
-          color: ColorsApp.secundaryColor,
+          color: ColorsApp.primaryColor,
         ),
-        focusColor: ColorsApp.secundaryColor,
+        focusColor: ColorsApp.primaryColor,
         labelStyle: TextStyle(
           color: ColorsApp.secundaryColor,
         ),

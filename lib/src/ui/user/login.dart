@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:rest_house_rd/src/ui/theme/colors.dart';
 
@@ -26,8 +24,35 @@ class Login extends StatelessWidget {
   }
 }
 
-class Form extends StatelessWidget {
+class Form extends StatefulWidget {
   const Form({super.key});
+
+  @override
+  State<Form> createState() => _FormState();
+}
+
+class _FormState extends State<Form> {
+  late FocusNode _focusEmail, _focusPassword;
+  @override
+  void initState() {
+    _focusEmail = FocusNode();
+    _focusPassword = FocusNode();
+    super.initState();
+
+    _focusEmail.addListener(() {
+      setState(() {});
+    });
+    _focusPassword.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusEmail.dispose();
+    _focusPassword.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +73,27 @@ class Form extends StatelessWidget {
           Column(
             children: [
               TextFormField(
-                decoration: const InputDecoration(
+                focusNode: _focusEmail,
+                decoration: InputDecoration(
                   hintText: 'Enter your email',
-                  prefixIcon: Icon(Icons.email_outlined),
+                  prefixIcon: Icon(Icons.email_outlined,
+                      color: _focusEmail.hasFocus
+                          ? ColorsApp.primaryColor
+                          : Colors.grey.shade600),
                 ),
+                style: TextStyle(color: ColorsApp.primaryColor),
               ),
               const SizedBox(height: 30),
               TextFormField(
-                decoration: const InputDecoration(
-                  border: UnderlineInputBorder(),
+                focusNode: _focusPassword,
+                decoration: InputDecoration(
                   hintText: 'Enter your password ',
-                  prefixIcon: Icon(Icons.lock_outline),
+                  prefixIcon: Icon(Icons.lock_outline,
+                      color: _focusPassword.hasFocus
+                          ? ColorsApp.primaryColor
+                          : Colors.grey.shade600),
                 ),
+                style: TextStyle(color: ColorsApp.primaryColor),
               ),
             ],
           )
