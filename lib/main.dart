@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:rest_house_rd/src/ui/app.dart';
-import 'package:rest_house_rd/src/ui/theme/theme_changer.dart';
+import 'package:rest_house_rd/src/presentation/app.dart';
+import 'package:rest_house_rd/src/presentation/theme/theme_changer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
