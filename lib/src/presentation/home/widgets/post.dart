@@ -108,7 +108,7 @@ class Post extends StatelessWidget {
                   ),
                   SizedBox(
                     width: width * 0.131944444,
-                    height: height * 0.139705882,
+                    height: width * 0.129705882,
                     child: TextButton(
                       onPressed: () {},
                       child: const Icon(
