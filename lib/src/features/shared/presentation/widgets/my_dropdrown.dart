@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:rest_house_rd/src/config/theme/theme_changer.dart';
+import 'package:rest_house_rd/src/features/shared/presentation/provider/theme_provider.dart';
 
-class MyDropdown extends StatefulWidget {
+class MyDropdown extends ConsumerStatefulWidget {
   final String text;
   final double fontSize;
   final double width;
@@ -16,13 +16,13 @@ class MyDropdown extends StatefulWidget {
       required this.iconSize});
 
   @override
-  State<MyDropdown> createState() => _MyDropdownState();
+  MyDropdownState createState() => MyDropdownState();
 }
 
-class _MyDropdownState extends State<MyDropdown> {
+class MyDropdownState extends ConsumerState<MyDropdown> {
   @override
   Widget build(BuildContext context) {
-    final isDark = context.read<ThemeChanger>().isDarkTheme;
+    final isDark = ref.read(themeProvider).isDarkTheme;
     return GestureDetector(
       onTap: () {},
       child: Container(

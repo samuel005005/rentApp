@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:provider/provider.dart';
-import 'package:rest_house_rd/src/config/theme/theme_changer.dart';
 
-class IconNotification extends StatelessWidget {
+import 'package:rest_house_rd/src/features/shared/presentation/provider/theme_provider.dart';
+
+class IconNotification extends ConsumerWidget {
   final double iconSize;
   const IconNotification({super.key, required this.iconSize});
   final _sizeIconRed = .266666667;
@@ -12,8 +13,8 @@ class IconNotification extends StatelessWidget {
   final _positionIconRed = .533333333;
   final _positionIconGrey = .5;
   @override
-  Widget build(BuildContext context) {
-    final isDark = context.read<ThemeChanger>().isDarkTheme;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = ref.read(themeProvider).isDarkTheme;
     return Row(
       children: [
         Container(

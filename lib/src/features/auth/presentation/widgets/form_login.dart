@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:rest_house_rd/src/config/routes/app_routes.dart';
+
 import 'package:rest_house_rd/src/config/theme/colors.dart';
 
 class FormLogin extends StatefulWidget {
@@ -122,9 +122,7 @@ class _FormLoginState extends State<FormLogin> {
                       fontWeight: FontWeight.bold,
                       color: ColorsApp.primaryColor),
                 ),
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.home);
-                },
+                onTap: () {},
               )
             ]),
           ],

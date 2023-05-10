@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:rest_house_rd/src/config/routes/app_routes.dart';
+
 import 'package:rest_house_rd/src/config/theme/colors.dart';
 import 'package:rest_house_rd/src/features/shared/presentation/widgets/rating.dart';
 
@@ -34,7 +35,7 @@ class DetailPostScreen extends StatelessWidget {
                     SizedBox(width: width),
                     InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.postView);
+                        context.go('');
                       },
                       child: Image(
                         width: width,

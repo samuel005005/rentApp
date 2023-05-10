@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:provider/provider.dart';
-import 'package:rest_house_rd/src/config/theme/theme_changer.dart';
+import 'package:rest_house_rd/src/features/shared/presentation/provider/theme_provider.dart';
 import 'package:rest_house_rd/src/features/shared/presentation/widgets/rating.dart';
 
-class Post extends StatelessWidget {
+class Post extends ConsumerWidget {
   final String image;
   final String title;
   final String direction;
@@ -18,8 +18,8 @@ class Post extends StatelessWidget {
       required this.details});
 
   @override
-  Widget build(BuildContext context) {
-    final isDark = context.read<ThemeChanger>().isDarkTheme;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = ref.read(themeProvider).isDarkTheme;
     return LayoutBuilder(builder: (context, contraints) {
       final width = contraints.maxWidth;
       final height = contraints.maxHeight;

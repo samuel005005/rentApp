@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rest_house_rd/src/app.dart';
-
-import 'src/config/theme/theme_changer.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,9 +15,8 @@ void main() {
   );
 
   return runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeChanger(1),
-      child: const App(),
+    const ProviderScope(
+      child: App(),
     ),
   );
 }
