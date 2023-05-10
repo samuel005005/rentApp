@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:rest_house_rd/src/config/theme/colors.dart';
 
 class ThemeChanger extends ChangeNotifier {
   bool _isDarkTheme = false;
 
   late ThemeData _currentTheme;
 
-  ThemeChanger(int theme) {
+  ThemeChanger(bool theme) {
     defaultTheme(theme);
   }
 
@@ -25,13 +23,9 @@ class ThemeChanger extends ChangeNotifier {
     notifyListeners();
   }
 
-  void defaultTheme(int theme) {
+  void defaultTheme(bool theme) {
     switch (theme) {
-      case 1:
-        _isDarkTheme = false;
-        _currentTheme = customTheme;
-        break;
-      case 2:
+      case true:
         _isDarkTheme = true;
         _currentTheme = darkTheme;
         break;
@@ -42,74 +36,39 @@ class ThemeChanger extends ChangeNotifier {
   }
 
   static ThemeData get customTheme {
-    return ThemeData(useMaterial3: true).copyWith(
-      textTheme: GoogleFonts.latoTextTheme(Typography.blackRedwoodCity),
-      textSelectionTheme: TextSelectionThemeData(
-        cursorColor: ColorsApp.primaryColor,
-      ),
-      primaryColor: ColorsApp.primaryColor,
-      colorScheme: const ColorScheme.light().copyWith(),
-      scaffoldBackgroundColor: const Color(0xfff5f7f8),
-      textButtonTheme: TextButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: ColorsApp.primaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
+    return ThemeData(
+      useMaterial3: true,
+      canvasColor: const Color(0xff212121),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        selectedItemColor: Color(0xff4da89e),
+        unselectedItemColor: Colors.grey,
       ),
       iconTheme: IconThemeData(
-        color: ColorsApp.primaryColor,
+        color: Colors.grey.shade500,
       ),
-      inputDecorationTheme: InputDecorationTheme(
-        border: UnderlineInputBorder(
-          borderRadius: BorderRadius.circular(10)
-              .copyWith(bottomRight: const Radius.circular(0)),
-          borderSide: BorderSide(
-            strokeAlign: 1,
-            color: ColorsApp.primaryColor,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          foregroundColor: const Color(0xff4fa7b2),
+          textStyle: const TextStyle(fontWeight: FontWeight.bold),
+          backgroundColor: const Color(0xffe4f6f8),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
           ),
-        ),
-        focusedBorder: UnderlineInputBorder(
-          borderRadius: BorderRadius.circular(10)
-              .copyWith(bottomRight: const Radius.circular(0)),
-          borderSide: BorderSide(
-            color: ColorsApp.primaryColor,
-          ),
-        ),
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 22,
-          horizontal: 26,
-        ),
-        prefixIconColor: Colors.grey.shade600,
-        hintStyle: TextStyle(
-          color: Colors.grey.shade600,
-        ),
-        prefixStyle: TextStyle(
-          color: ColorsApp.primaryColor,
-        ),
-        suffixStyle: TextStyle(
-          color: ColorsApp.primaryColor,
-        ),
-        focusColor: ColorsApp.primaryColor,
-        labelStyle: TextStyle(
-          color: ColorsApp.secundaryColor,
         ),
       ),
     );
   }
 
   static ThemeData get darkTheme {
-    return ThemeData.dark(useMaterial3: true).copyWith(
-      textButtonTheme: TextButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: ColorsApp.primaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
+    return ThemeData(
+      useMaterial3: true,
+      colorSchemeSeed: Colors.white,
+      brightness: Brightness.dark,
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        selectedItemColor: Color(0xff4da89e),
+        unselectedItemColor: Colors.grey,
       ),
-      textTheme: const TextTheme(),
     );
   }
 }
