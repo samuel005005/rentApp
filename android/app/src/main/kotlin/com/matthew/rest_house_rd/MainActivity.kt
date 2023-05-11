@@ -1,4 +1,4 @@
-package com.example.rest_house_rd
+package com.matthew.rest_house_rd
 
 import io.flutter.embedding.android.FlutterActivity
 

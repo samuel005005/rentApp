@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rest_house_rd">
+    package="com.matthew.rest_house_rd">
    <application
         android:label="rest_house_rd"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+    <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCOt7jbD2hjp4AAEyQtqnZDJqKs65Pv-QQ"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
