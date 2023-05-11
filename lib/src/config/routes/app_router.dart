@@ -39,7 +39,7 @@ final appRouter = GoRouter(
       name: HomeScreen.name,
       builder: (context, state) {
         final pageIndex = int.parse(state.pathParameters['page'] ?? '0');
-        if (pageIndex > 3 || pageIndex < 0) {
+        if (pageIndex > 4 || pageIndex < 0) {
           return const Scaffold(
             body: Center(
               child: Text("Page not Found"),

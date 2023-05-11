@@ -24,9 +24,17 @@ class CustomButtonNavigator extends StatelessWidget {
       onTap: (value) => onItemTapped(context, value),
       items: const [
         BottomNavigationBarItem(
+          label: "Feed",
+          activeIcon: FeedIcon(),
+          icon: Icon(
+            FontAwesomeIcons.house,
+            size: 16,
+          ),
+        ),
+        BottomNavigationBarItem(
           label: "Search",
           activeIcon: SeachHomeIcon(),
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.search),
         ),
         BottomNavigationBarItem(
           label: "Saves",

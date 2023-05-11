@@ -109,3 +109,43 @@ class MoreOptionIcon extends StatelessWidget {
     );
   }
 }
+
+class FeedIcon extends StatelessWidget {
+  const FeedIcon({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 50,
+      height: 30,
+      child: Stack(
+        fit: StackFit.expand,
+        children: const [
+          Positioned(
+            top: 3,
+            right: 9,
+            child: Icon(
+              Ionicons.sunny,
+              color: Color(0xffcebdfd),
+              size: 18,
+            ),
+          ),
+          Icon(
+            FontAwesomeIcons.house,
+            color: Color(0xff051b7c),
+            size: 18,
+          ),
+          Positioned(
+            bottom: 3,
+            left: 8,
+            child: Icon(
+              FontAwesomeIcons.tree,
+              color: Color(0xffc3d04e),
+              size: 13,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

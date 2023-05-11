@@ -37,6 +37,7 @@ class ThemeChanger extends ChangeNotifier {
 
   static ThemeData get customTheme {
     return ThemeData(
+      fontFamily: 'Rubik',
       useMaterial3: true,
       canvasColor: const Color(0xfff5f6f8),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(

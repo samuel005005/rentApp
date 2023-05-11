@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'widgets/posts.dart';
+import 'package:rest_house_rd/src/features/home/presentation/views/widgets/posts.dart';
 
 class SeachView extends StatelessWidget {
   const SeachView({super.key});
@@ -26,7 +25,6 @@ class SeachView extends StatelessWidget {
             ],
           ),
         ),
-        // body: const Posts(),
         body: const Posts(),
       ),
     );
