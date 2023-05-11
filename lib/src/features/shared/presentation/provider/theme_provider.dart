@@ -6,6 +6,6 @@ import 'package:rest_house_rd/src/config/theme/theme_changer.dart';
 final themeProvider = ChangeNotifierProvider<ThemeChanger>((ref) {
   var brightness =
       SchedulerBinding.instance.platformDispatcher.platformBrightness;
-  bool isDarkMode = brightness == Brightness.dark;
+  bool isDarkMode = brightness == Brightness.light;
   return ThemeChanger(isDarkMode);
 });

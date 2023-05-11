@@ -38,9 +38,9 @@ class ThemeChanger extends ChangeNotifier {
   static ThemeData get customTheme {
     return ThemeData(
       useMaterial3: true,
-      canvasColor: const Color(0xff212121),
+      canvasColor: const Color(0xfff5f6f8),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Color(0xff4da89e),
+        selectedItemColor: Color(0xff646569),
         unselectedItemColor: Colors.grey,
       ),
       iconTheme: IconThemeData(
@@ -63,11 +63,24 @@ class ThemeChanger extends ChangeNotifier {
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
-      colorSchemeSeed: Colors.white,
       brightness: Brightness.dark,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Color(0xff4da89e),
+        selectedItemColor: Color(0xffcbccce),
         unselectedItemColor: Colors.grey,
+      ),
+      iconTheme: IconThemeData(
+        color: Colors.grey.shade500,
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          foregroundColor: const Color(0xff4fa7b2),
+          textStyle: const TextStyle(fontWeight: FontWeight.bold),
+          backgroundColor: const Color(0xff192728),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ),
       ),
     );
   }
