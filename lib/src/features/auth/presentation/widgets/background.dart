@@ -45,7 +45,7 @@ class _HeaderPainter extends CustomPainter {
 
     final paint = Paint();
     // Properties
-    paint.color = ColorsApp.primaryColor;
+    paint.color = ColorsApp.foregroundColor;
     paint.style = PaintingStyle.fill; // .fill .stroke
     paint.strokeWidth = 5;
 

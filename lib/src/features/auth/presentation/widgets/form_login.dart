@@ -58,10 +58,10 @@ class _FormLoginState extends State<FormLogin> {
                 hintText: 'Enter your email',
                 prefixIcon: Icon(Ionicons.mail_open_outline,
                     color: _focusEmail.hasFocus
-                        ? ColorsApp.primaryColor
+                        ? ColorsApp.foregroundColor
                         : Colors.grey.shade600),
               ),
-              style: TextStyle(color: ColorsApp.primaryColor),
+              style: TextStyle(color: ColorsApp.foregroundColor),
             ),
             SizedBox(height: width * 0.072992701),
             TextFormField(
@@ -70,10 +70,10 @@ class _FormLoginState extends State<FormLogin> {
                 hintText: 'Enter your password ',
                 prefixIcon: Icon(Ionicons.lock_closed_outline,
                     color: _focusPassword.hasFocus
-                        ? ColorsApp.primaryColor
+                        ? ColorsApp.foregroundColor
                         : Colors.grey.shade600),
               ),
-              style: TextStyle(color: ColorsApp.primaryColor),
+              style: TextStyle(color: ColorsApp.foregroundColor),
             ),
             SizedBox(height: width * 0.072992701),
             Row(mainAxisAlignment: MainAxisAlignment.end, children: [
@@ -93,8 +93,8 @@ class _FormLoginState extends State<FormLogin> {
                 style: ButtonStyle(
                   foregroundColor:
                       MaterialStateProperty.all<Color>(Colors.white),
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(ColorsApp.primaryColor),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      ColorsApp.foregroundColor),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.zero,
@@ -120,7 +120,7 @@ class _FormLoginState extends State<FormLogin> {
                   "SIGN UP",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: ColorsApp.primaryColor),
+                      color: ColorsApp.foregroundColor),
                 ),
                 onTap: () {},
               )

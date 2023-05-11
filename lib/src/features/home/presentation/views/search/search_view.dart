@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:rest_house_rd/src/features/home/presentation/views/widgets/custom_appbar.dart';
 import 'package:rest_house_rd/src/features/home/presentation/views/widgets/posts.dart';
 
 class SeachView extends StatelessWidget {
@@ -11,7 +12,7 @@ class SeachView extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Search"),
+          flexibleSpace: const CustomAppBar(),
           bottom: TabBar(
             onTap: (int value) {
               if (kDebugMode) {

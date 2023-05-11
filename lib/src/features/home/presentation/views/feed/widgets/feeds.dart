@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rest_house_rd/src/config/theme/colors.dart';
 import 'package:rest_house_rd/src/features/home/presentation/views/widgets/post.dart';
 
 class Feeds extends StatelessWidget {
@@ -17,10 +18,7 @@ class Feeds extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(width: 15),
-                const Icon(
-                  Icons.star,
-                  color: Color(0xff4fa7b2),
-                ),
+                Icon(Icons.star, color: ColorsApp.foregroundColor),
                 const SizedBox(width: 10),
                 Text('New Home in New York', style: textStyle.titleMedium),
               ],

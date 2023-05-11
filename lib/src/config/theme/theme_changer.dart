@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rest_house_rd/src/config/theme/colors.dart';
 
 class ThemeChanger extends ChangeNotifier {
   bool _isDarkTheme = false;
@@ -50,7 +51,7 @@ class ThemeChanger extends ChangeNotifier {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          foregroundColor: const Color(0xff4fa7b2),
+          foregroundColor: ColorsApp.foregroundColor,
           textStyle: const TextStyle(fontWeight: FontWeight.bold),
           backgroundColor: const Color(0xffe4f6f8),
           shape: RoundedRectangleBorder(
@@ -75,7 +76,7 @@ class ThemeChanger extends ChangeNotifier {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          foregroundColor: const Color(0xff4fa7b2),
+          foregroundColor: ColorsApp.foregroundColor,
           textStyle: const TextStyle(fontWeight: FontWeight.bold),
           backgroundColor: const Color(0xff192728),
           shape: RoundedRectangleBorder(
