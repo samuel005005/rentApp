@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/posts.dart';
@@ -12,14 +13,20 @@ class SeachView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Search"),
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.directions_car)),
-              Tab(icon: Icon(Icons.directions_transit)),
-              Tab(icon: Icon(Icons.directions_bike)),
+          bottom: TabBar(
+            onTap: (int value) {
+              if (kDebugMode) {
+                print(value);
+              }
+            },
+            tabs: const [
+              Tab(text: 'MAP RESULTS'),
+              Tab(text: 'SORT BY'),
+              Tab(text: 'SAVE SEARCH'),
             ],
           ),
         ),
+        // body: const Posts(),
         body: const Posts(),
       ),
     );
