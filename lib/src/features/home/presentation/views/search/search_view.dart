@@ -1,5 +1,4 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:rest_house_rd/src/features/home/presentation/views/widgets/custom_appbar.dart';
 import 'package:rest_house_rd/src/features/home/presentation/views/widgets/posts.dart';
