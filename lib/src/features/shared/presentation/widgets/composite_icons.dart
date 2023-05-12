@@ -7,12 +7,12 @@ class SeachHomeIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: 50,
       height: 30,
       child: Stack(
         fit: StackFit.expand,
-        children: const [
+        children: [
           Icon(Icons.home, color: Color(0xff4da89e)),
           Positioned(
             top: -2,
@@ -34,12 +34,12 @@ class SavesLocationIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: 50,
       height: 30,
       child: Stack(
         fit: StackFit.expand,
-        children: const [
+        children: [
           Icon(
             Ionicons.heart,
             color: Color(0xff6e1632),
@@ -64,12 +64,12 @@ class AlertNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: 50,
       height: 30,
       child: Stack(
         fit: StackFit.expand,
-        children: const [
+        children: [
           Positioned(
             top: 3,
             left: 10,
@@ -94,12 +94,12 @@ class MoreOptionIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: 50,
       height: 30,
       child: Stack(
         fit: StackFit.expand,
-        children: const [
+        children: [
           Icon(
             FontAwesomeIcons.ellipsis,
             color: Color(0xffee946d),
@@ -115,12 +115,12 @@ class FeedIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: 50,
       height: 30,
       child: Stack(
         fit: StackFit.expand,
-        children: const [
+        children: [
           Positioned(
             top: 3,
             right: 9,

@@ -1,8 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.matthew.rest_house_rd">
 
-       <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        <uses-permission android:name="android.permission.WAKE_LOCK" />
+        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
         
    <application
         android:label="rest_house_rd"
@@ -10,7 +14,8 @@
         android:icon="@mipmap/ic_launcher">
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyCOt7jbD2hjp4AAEyQtqnZDJqKs65Pv-QQ"/>
+                android:value="AIzaSyB_LEYzKiG1MNrxKq1k-JbtxEotWcPVbT4"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

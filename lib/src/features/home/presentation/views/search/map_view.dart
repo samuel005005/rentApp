@@ -1,48 +1,79 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:rest_house_rd/src/config/theme/uber_map_theme.dart';
+import 'package:rest_house_rd/src/features/home/presentation/providers/maps_provider.dart';
 
-class MapView extends StatefulWidget {
+import 'widgets/draw_button.dart';
+import 'widgets/location_button.dart';
+
+class MapView extends ConsumerStatefulWidget {
   const MapView({super.key});
+
+  @override
+  MapViewState createState() => MapViewState();
+}
+
+class MapViewState extends ConsumerState<MapView> {
+  final Completer<GoogleMapController> _controller =
+      Completer<GoogleMapController>();
+
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(18.546792154500128, -69.87579620956362),
+    target: LatLng(18.477518, -69.897945),
     zoom: 14.4746,
   );
 
   @override
-  State<MapView> createState() => _MapViewState();
-}
-
-class _MapViewState extends State<MapView> {
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
-  static const CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  void initState() {
+    super.initState();
+    ref.read(markersProvier.notifier).getMarkers();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final backgroudColor = Theme.of(context).colorScheme.background;
+    final markers = ref.watch(markersProvier);
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: MapView._kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
+      body: Stack(
+        children: [
+          GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: _kGooglePlex,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: false,
+            zoomControlsEnabled: false,
+            mapToolbarEnabled: false,
+            onMapCreated: (GoogleMapController controller) {
+              controller.setMapStyle(jsonEncode(dartThemeMap));
+              _controller.complete(controller);
+            },
+            markers: markers,
+          ),
+          Positioned(
+            top: 5,
+            right: size.width * .3,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: backgroudColor,
+              ),
+              child: const Text("20.36K Home New York"),
+            ),
+          )
+        ],
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: _goToTheLake,
-      //   label: const Text('To the lake!'),
-      //   icon: const Icon(Icons.directions_boat),
-      // ),
+      floatingActionButton: const Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          LocationButton(),
+          DrawLocation(),
+        ],
+      ),
     );
-  }
-
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }
