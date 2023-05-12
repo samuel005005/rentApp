@@ -1,0 +1,4 @@
+storePassword=matthew
+keyPassword=matthew
+keyAlias=key
+storeFile=../../key.jks

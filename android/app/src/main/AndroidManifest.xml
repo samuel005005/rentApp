@@ -11,7 +11,7 @@
    <application
         android:label="rest_house_rd"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
 
         <meta-data android:name="com.google.android.geo.API_KEY"
                 android:value="AIzaSyB_LEYzKiG1MNrxKq1k-JbtxEotWcPVbT4"/>
