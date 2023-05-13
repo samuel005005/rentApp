@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rest_house_rd/src/features/home/presentation/screens/home_screen.dart';
+import 'package:rest_house_rd/src/features/home/presentation/views/widgets/post_details.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/home/0',
@@ -50,7 +51,16 @@ final appRouter = GoRouter(
           pageIndex: pageIndex,
         );
       },
-      routes: const [],
+      routes: [
+        GoRoute(
+          path: 'post/:id',
+          name: PostDetails.name,
+          builder: (context, state) {
+            final postId = state.pathParameters['id'] ?? 'no-id';
+            return PostDetails(postId: postId);
+          },
+        ),
+      ],
     ),
     GoRoute(
       path: '/',

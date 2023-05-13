@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:rest_house_rd/src/config/theme/colors.dart';
 import 'package:rest_house_rd/src/features/home/presentation/delegates/search_home_delegate.dart';
+import 'package:rest_house_rd/src/features/shared/presentation/provider/theme_provider.dart';
 
 class CustomAppBar extends ConsumerWidget {
   const CustomAppBar({super.key});
@@ -11,28 +12,29 @@ class CustomAppBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
-
+    final isDark = ref.read(isDarkProvider);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GestureDetector(
-          onTap: () {
-            if (kDebugMode) {
-              showSearch(
-                context: context,
-                delegate: SearchHomeDelegate(),
-              );
-            }
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: size.width * .8,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                if (kDebugMode) {
+                  showSearch(
+                    context: context,
+                    delegate: SearchHomeDelegate(),
+                  );
+                }
+              },
+              child: Container(
+                width: size.width * .7,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: const Color(0xff212121),
+                  color:
+                      isDark ? const Color(0xff212121) : Colors.grey.shade200,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -48,15 +50,18 @@ class CustomAppBar extends ConsumerWidget {
                   ],
                 ),
               ),
-              const Spacer(),
-              Text(
+            ),
+            const Spacer(),
+            TextButton(
+              onPressed: () {},
+              child: Text(
                 "FILTERS",
                 style: TextStyle(
                     color: ColorsApp.foregroundColor,
                     fontWeight: FontWeight.bold),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );

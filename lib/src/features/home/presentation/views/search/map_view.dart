@@ -62,7 +62,7 @@ class MapViewState extends ConsumerState<MapView> {
                 borderRadius: BorderRadius.circular(10),
                 color: backgroudColor,
               ),
-              child: const Text("20.36K Home New York"),
+              // child: const Text("20.36K Home New York"),
             ),
           )
         ],
