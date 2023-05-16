@@ -10,14 +10,15 @@ import 'package:rest_house_rd/src/features/home/presentation/providers/maps_prov
 import 'widgets/draw_button.dart';
 import 'widgets/location_button.dart';
 
-class MapView extends ConsumerStatefulWidget {
-  const MapView({super.key});
+class MapViewWidget extends ConsumerStatefulWidget {
+  final bool preview;
+  const MapViewWidget({super.key, this.preview = false});
 
   @override
   MapViewState createState() => MapViewState();
 }
 
-class MapViewState extends ConsumerState<MapView> {
+class MapViewState extends ConsumerState<MapViewWidget> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
@@ -67,13 +68,15 @@ class MapViewState extends ConsumerState<MapView> {
           )
         ],
       ),
-      floatingActionButton: const Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          LocationButton(),
-          DrawLocation(),
-        ],
-      ),
+      floatingActionButton: widget.preview
+          ? const SizedBox()
+          : const Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                LocationButton(),
+                DrawLocation(),
+              ],
+            ),
     );
   }
 }

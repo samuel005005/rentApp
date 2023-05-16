@@ -39,7 +39,7 @@ class _SeachViewState extends State<SeachView>
         ),
         body: FadeIn(
           animate: true,
-          child: isMap ? const MapView() : const Posts(),
+          child: isMap ? const MapViewWidget() : const Posts(),
         ),
       ),
     );
