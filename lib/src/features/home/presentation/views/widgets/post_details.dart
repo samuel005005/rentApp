@@ -42,15 +42,14 @@ class _CustomSliverAppBar extends ConsumerWidget {
     final size = MediaQuery.of(context).size;
     final scaffoldBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
     final isDark = ref.read(isDarkProvider);
-    final appHeight = MediaQuery.of(context).size.height * .4;
+    final appBarHeight =
+        MediaQuery.of(context).size.height * .4 - AppBar().preferredSize.height;
     return Theme(
       data: ThemeData(
         primaryIconTheme: const IconThemeData(),
       ),
       child: SliverLayoutBuilder(builder: (context, constraints) {
-        final scrolled = constraints.scrollOffset;
-        final appHeight = AppBar().preferredSize.height;
-        print('scrolled ${scrolled}');
+        final scrolled = constraints.scrollOffset >= appBarHeight;
         return SliverAppBar(
           elevation: 0,
           backgroundColor: scaffoldBackgroundColor,
@@ -277,7 +276,7 @@ class _MainInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const tagStyle = TextStyle(color: Color.fromARGB(255, 14, 85, 143));
+    const tagStyle = TextStyle(color: Color(0xffddd4f3));
     return const Row(
       children: [
         Text("FOR RENT", style: tagStyle),
