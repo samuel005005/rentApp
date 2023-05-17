@@ -49,12 +49,21 @@ class _CustomSliverAppBar extends ConsumerWidget {
         primaryIconTheme: const IconThemeData(),
       ),
       child: SliverLayoutBuilder(builder: (context, constraints) {
-        final scrolled = constraints.scrollOffset >= appBarHeight;
+        final scrolled = constraints.scrollOffset + 10 >= appBarHeight;
+        Color color = Colors.white;
+
+        if (scrolled) {
+          if (isDark) {
+            color = Colors.black;
+          } else {
+            color = Colors.black;
+          }
+        }
         return SliverAppBar(
           elevation: 0,
           backgroundColor: scaffoldBackgroundColor,
           expandedHeight: size.height * .4,
-          foregroundColor: isDark ? Colors.white : Colors.black,
+          foregroundColor: color,
           pinned: true,
           actions: [
             IconButton(
@@ -159,6 +168,7 @@ class _PostDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const _MainInfo(),
+          const SizedBox(height: 8),
           Text(
             "\$4,100/mo",
             style: title.titleLarge,
@@ -183,7 +193,7 @@ class _PostDetails extends StatelessWidget {
           const SizedBox(height: 15),
           const _LocalInformation(),
           const SizedBox(height: 15),
-          const _Description()
+          const _Description(),
         ],
       ),
     );
@@ -225,7 +235,7 @@ class _Highlights extends StatelessWidget {
         titleLarge: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         titleMedium:
             const TextStyle(fontWeight: FontWeight.bold, fontSize: 15));
-    final size = MediaQuery.of(context).size;
+
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -238,33 +248,42 @@ class _Highlights extends StatelessWidget {
         children: [
           Text("Home Highlights", style: title.titleMedium),
           const SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+          Table(
             children: [
-              const _TextIcon(icon: Icons.pets, text: "Pets"),
-              SizedBox(width: size.width * .3),
-              Text("No", style: title.titleMedium),
+              TableRow(
+                children: [
+                  const Column(children: [
+                    _TextIcon(icon: Icons.pets, text: "Pets"),
+                  ]),
+                  Column(children: [
+                    Text("No", style: title.titleMedium),
+                  ]),
+                ],
+              ),
+              TableRow(
+                children: [
+                  const Column(children: [
+                    _TextIcon(icon: Icons.garage_rounded, text: "Parking"),
+                  ]),
+                  Column(children: [
+                    Text("Yes", style: title.titleMedium),
+                  ]),
+                ],
+              ),
+              TableRow(
+                children: [
+                  const Column(children: [
+                    _TextIcon(
+                        icon: FontAwesomeIcons.uikit,
+                        text: "Ultilities Include"),
+                  ]),
+                  Column(children: [
+                    Text("Contact Manager", style: title.titleMedium),
+                  ]),
+                ],
+              ),
             ],
           ),
-          const SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const _TextIcon(icon: Icons.garage_rounded, text: "Parking"),
-              SizedBox(width: size.width * .25),
-              Text("Contact Manager", style: title.titleMedium),
-            ],
-          ),
-          const SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const _TextIcon(
-                  icon: FontAwesomeIcons.uikit, text: "Ultilities Included"),
-              SizedBox(width: size.width * .09),
-              Text("Contact Manager", style: title.titleMedium),
-            ],
-          )
         ],
       ),
     );
@@ -276,13 +295,14 @@ class _MainInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const tagStyle = TextStyle(color: Color(0xffddd4f3));
-    return const Row(
+    final tagStyle = TextStyle(
+        color: ColorsApp.foregroundColor, fontWeight: FontWeight.bold);
+    return Row(
       children: [
         Text("FOR RENT", style: tagStyle),
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         Text("NEW", style: tagStyle),
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         Text("OPEN FRI, 12-5:545PM", style: tagStyle),
       ],
     );
