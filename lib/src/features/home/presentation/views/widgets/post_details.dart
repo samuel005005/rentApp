@@ -7,8 +7,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:rest_house_rd/src/config/theme/colors.dart';
 import 'package:rest_house_rd/src/data.dart';
+import 'package:rest_house_rd/src/features/home/presentation/providers/maps_provider.dart';
 import 'package:rest_house_rd/src/features/home/presentation/views/search/map_view.dart';
 import 'package:rest_house_rd/src/features/shared/presentation/provider/theme_provider.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class PostDetails extends StatelessWidget {
   static const name = 'post-details';
@@ -27,6 +29,41 @@ class PostDetails extends StatelessWidget {
               (context, index) => const _PostDetails(),
               childCount: 1,
             ),
+          ),
+          const SliverFillRemaining(
+            hasScrollBody: false,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: StickButton(),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class StickButton extends StatelessWidget {
+  final bool rounded;
+  const StickButton({super.key, this.rounded = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 40,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(rounded ? 10 : 0),
+        color: Colors.red,
+      ),
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.mail_outline, color: Colors.white),
+          SizedBox(width: 10),
+          Text(
+            "CHECK AVAILABILITY",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           )
         ],
       ),
@@ -152,11 +189,11 @@ class _CustomSliverAppBar extends ConsumerWidget {
   }
 }
 
-class _PostDetails extends StatelessWidget {
+class _PostDetails extends ConsumerWidget {
   const _PostDetails();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final title = Theme.of(context).textTheme.copyWith(
         titleLarge: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         titleMedium:
@@ -164,36 +201,58 @@ class _PostDetails extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          const _MainInfo(),
-          const SizedBox(height: 8),
-          Text(
-            "\$4,100/mo",
-            style: title.titleLarge,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const _MainInfo(),
+                const SizedBox(height: 8),
+                Text(
+                  "\$4,100/mo",
+                  style: title.titleLarge,
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  "13105 40th Rd #8G",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const Text("Upper  East Side, 40th Rd #8G"),
+                const SizedBox(height: 8),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _TextIcon(icon: Ionicons.bed, text: "3 Beds"),
+                    _TextIcon(icon: Icons.bathtub, text: "2 Baths"),
+                    _TextIcon(icon: Icons.square_foot, text: "2,600 sqft"),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                const _Highlights(),
+                const SizedBox(height: 15),
+                const _LocalInformation(),
+                const SizedBox(height: 15),
+                const _Description(),
+              ],
+            ),
           ),
-          const SizedBox(height: 8),
-          const Text(
-            "13105 40th Rd #8G",
-            style: TextStyle(fontWeight: FontWeight.bold),
+          Positioned(
+            bottom: 0,
+            child: VisibilityDetector(
+              key: const Key('my-widget-key'),
+              onVisibilityChanged: (visibilityInfo) {
+                bool visible;
+                if (visibilityInfo.visibleFraction > 0.5) {
+                  visible = false;
+                } else {
+                  visible = true;
+                }
+                ref.read(visibleButton.notifier).update((state) => visible);
+              },
+              child: const StickButton(rounded: true),
+            ),
           ),
-          const Text("Upper  East Side, 40th Rd #8G"),
-          const SizedBox(height: 8),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _TextIcon(icon: Ionicons.bed, text: "3 Beds"),
-              _TextIcon(icon: Icons.bathtub, text: "2 Baths"),
-              _TextIcon(icon: Icons.square_foot, text: "2,600 sqft"),
-            ],
-          ),
-          const SizedBox(height: 8),
-          const _Highlights(),
-          const SizedBox(height: 15),
-          const _LocalInformation(),
-          const SizedBox(height: 15),
-          const _Description(),
         ],
       ),
     );
