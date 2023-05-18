@@ -12,13 +12,14 @@ import 'package:rest_house_rd/src/features/home/presentation/views/search/map_vi
 import 'package:rest_house_rd/src/features/shared/presentation/provider/theme_provider.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class PostDetails extends StatelessWidget {
+class PostDetails extends ConsumerWidget {
   static const name = 'post-details';
   final String postId;
   const PostDetails({super.key, required this.postId});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bool visible = ref.watch(visibleProvider);
     return Scaffold(
       body: CustomScrollView(
         physics: const ClampingScrollPhysics(),
@@ -30,15 +31,9 @@ class PostDetails extends StatelessWidget {
               childCount: 1,
             ),
           ),
-          const SliverFillRemaining(
-            hasScrollBody: false,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: StickButton(),
-            ),
-          )
         ],
       ),
+      bottomSheet: visible ? const StickButton() : const SizedBox(),
     );
   }
 }
@@ -201,57 +196,49 @@ class _PostDetails extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const _MainInfo(),
-                const SizedBox(height: 8),
-                Text(
-                  "\$4,100/mo",
-                  style: title.titleLarge,
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  "13105 40th Rd #8G",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const Text("Upper  East Side, 40th Rd #8G"),
-                const SizedBox(height: 8),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _TextIcon(icon: Ionicons.bed, text: "3 Beds"),
-                    _TextIcon(icon: Icons.bathtub, text: "2 Baths"),
-                    _TextIcon(icon: Icons.square_foot, text: "2,600 sqft"),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                const _Highlights(),
-                const SizedBox(height: 15),
-                const _LocalInformation(),
-                const SizedBox(height: 15),
-                const _Description(),
-              ],
-            ),
+          const _MainInfo(),
+          const SizedBox(height: 8),
+          Text(
+            "\$4,100/mo",
+            style: title.titleLarge,
           ),
-          Positioned(
-            bottom: 0,
-            child: VisibilityDetector(
-              key: const Key('my-widget-key'),
-              onVisibilityChanged: (visibilityInfo) {
-                bool visible;
-                if (visibilityInfo.visibleFraction > 0.5) {
-                  visible = false;
-                } else {
-                  visible = true;
-                }
-                ref.read(visibleButton.notifier).update((state) => visible);
-              },
-              child: const StickButton(rounded: true),
-            ),
+          const SizedBox(height: 8),
+          const Text(
+            "13105 40th Rd #8G",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const Text("Upper  East Side, 40th Rd #8G"),
+          const SizedBox(height: 8),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _TextIcon(icon: Ionicons.bed, text: "3 Beds"),
+              _TextIcon(icon: Icons.bathtub, text: "2 Baths"),
+              _TextIcon(icon: Icons.square_foot, text: "2,600 sqft"),
+            ],
+          ),
+          const SizedBox(height: 8),
+          const _Highlights(),
+          const SizedBox(height: 15),
+          const _LocalInformation(),
+          const SizedBox(height: 15),
+          const _Description(),
+          const SizedBox(height: 15),
+          VisibilityDetector(
+            key: const Key('my-widget-key'),
+            onVisibilityChanged: (visibilityInfo) {
+              bool visible;
+              if (visibilityInfo.visibleFraction > 0.5) {
+                visible = false;
+              } else {
+                visible = true;
+              }
+              ref.read(visibleProvider.notifier).update((state) => visible);
+            },
+            child: const StickButton(rounded: true),
           ),
         ],
       ),
