@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:expandable_text/expandable_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,19 +8,56 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:rest_house_rd/src/config/theme/colors.dart';
 import 'package:rest_house_rd/src/data.dart';
-import 'package:rest_house_rd/src/features/home/presentation/providers/maps_provider.dart';
+import 'package:rest_house_rd/src/features/home/presentation/providers/home_model_provider.dart';
+
 import 'package:rest_house_rd/src/features/home/presentation/views/search/map_view.dart';
 import 'package:rest_house_rd/src/features/shared/presentation/provider/theme_provider.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class PostDetails extends ConsumerWidget {
+class PostDetails extends ConsumerStatefulWidget {
   static const name = 'post-details';
   final String postId;
   const PostDetails({super.key, required this.postId});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final bool visible = ref.watch(visibleProvider);
+  PostDetailsState createState() => PostDetailsState();
+}
+
+class PostDetailsState extends ConsumerState<PostDetails>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<double> enlarge;
+
+  @override
+  void initState() {
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 30));
+
+    enlarge = Tween(begin: 1.0, end: 0.9).animate(
+      CurvedAnimation(
+        parent: animationController,
+        curve: Curves.easeOut,
+      ),
+    );
+    animationController.addListener(() {
+      if (kDebugMode) {
+        print('Status: ${animationController.status}');
+      }
+    });
+
+    ref.read(homeModelProvider.notifier).controller = animationController;
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         physics: const ClampingScrollPhysics(),
@@ -33,7 +71,14 @@ class PostDetails extends ConsumerWidget {
           ),
         ],
       ),
-      bottomSheet: visible ? const StickButton() : const SizedBox(),
+      bottomSheet: AnimatedBuilder(
+        animation: animationController,
+        child: const StickButton(),
+        builder: (context, childRentangle) => Transform.scale(
+          scale: enlarge.value,
+          child: (enlarge.value != 0.9 ? childRentangle : const SizedBox()),
+        ),
+      ),
     );
   }
 }
@@ -193,7 +238,7 @@ class _PostDetails extends ConsumerWidget {
         titleLarge: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         titleMedium:
             const TextStyle(fontWeight: FontWeight.bold, fontSize: 15));
-
+    final animationController = ref.read(homeModelProvider).controller;
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -230,16 +275,24 @@ class _PostDetails extends ConsumerWidget {
           VisibilityDetector(
             key: const Key('my-widget-key'),
             onVisibilityChanged: (visibilityInfo) {
-              bool visible;
-              if (visibilityInfo.visibleFraction > 0.5) {
-                visible = false;
+              if (visibilityInfo.visibleFraction >= 1) {
+                ref.read(homeModelProvider.notifier).controller.forward();
               } else {
-                visible = true;
+                ref.read(homeModelProvider.notifier).controller.reverse();
               }
-              ref.read(visibleProvider.notifier).update((state) => visible);
             },
-            child: const StickButton(rounded: true),
+            child: AnimatedBuilder(
+              animation: animationController,
+              child: const StickButton(rounded: true),
+              builder: (context, childRentangle) => Transform.scale(
+                scale: animationController.value,
+                child: (animationController.value != 0.9
+                    ? childRentangle
+                    : const SizedBox()),
+              ),
+            ),
           ),
+          const SizedBox(height: 100),
         ],
       ),
     );

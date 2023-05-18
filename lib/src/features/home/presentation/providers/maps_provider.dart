@@ -26,7 +26,3 @@ class MarkerNotifier extends StateNotifier<Set<Marker>> {
     state = {...state, market};
   }
 }
-
-final visibleProvider = StateProvider<bool>(
-  (ref) => true,
-);

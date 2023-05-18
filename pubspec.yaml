@@ -44,6 +44,7 @@ dependencies:
   google_maps_flutter: ^2.2.6
   intl: ^0.18.1
   ionicons: ^0.2.2
+  local_hero: ^0.2.0
   permission_handler: ^10.2.0
   visibility_detector: ^0.4.0+2
 
@@ -81,9 +82,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Rubik
+    - family: EncodeSansSemiCondensed
       fonts:
-        - asset: assets/font/Rubik/Rubik-VariableFont_wght.ttf
+        - asset: assets/font/Encode_Sans_Semi_Condensed/EncodeSansSemiCondensed-SemiBold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
