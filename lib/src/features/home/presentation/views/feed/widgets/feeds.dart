@@ -15,6 +15,7 @@ class Feeds extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 15),
             Row(
               children: [
                 const SizedBox(width: 15),

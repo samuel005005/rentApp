@@ -37,9 +37,6 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    // final screen = MediaQuery.of(context).size;
-    // final width = screen.width;
-    // final height = screen.height;
 
     if (pageController.hasClients) {
       pageController.animateToPage(

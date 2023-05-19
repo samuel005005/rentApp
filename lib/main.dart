@@ -7,12 +7,6 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.transparent, // Navigation bar
-      statusBarColor: Colors.transparent, // Status bar
-    ),
-  );
 
   return runApp(
     const ProviderScope(

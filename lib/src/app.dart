@@ -9,15 +9,17 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider).currentTheme;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: 'Rent App RD',
-          routerConfig: appRouter,
-          theme: ref.read(themeProvider).currentTheme),
+        debugShowCheckedModeBanner: false,
+        title: 'Rent App RD',
+        routerConfig: appRouter,
+        theme: theme,
+      ),
     );
   }
 }

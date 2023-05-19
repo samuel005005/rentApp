@@ -27,18 +27,14 @@ class PostDetailsState extends ConsumerState<PostDetails>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<double> enlarge;
-
+  late Animation<double> opacity;
   @override
   void initState() {
     animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 30));
+        vsync: this, duration: const Duration(milliseconds: 100));
 
-    enlarge = Tween(begin: 1.0, end: 0.9).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: Curves.easeOut,
-      ),
-    );
+    enlarge = Tween(begin: 1.0, end: 0.8).animate(animationController);
+    opacity = Tween(begin: 1.0, end: 0.0).animate(animationController);
     animationController.addListener(() {
       if (kDebugMode) {
         print('Status: ${animationController.status}');
@@ -74,10 +70,16 @@ class PostDetailsState extends ConsumerState<PostDetails>
       bottomSheet: AnimatedBuilder(
         animation: animationController,
         child: const StickButton(),
-        builder: (context, childRentangle) => Transform.scale(
-          scale: enlarge.value,
-          child: (enlarge.value != 0.9 ? childRentangle : const SizedBox()),
-        ),
+        builder: (context, childRentangle) {
+          final bool visible = opacity.value < 1 ? false : true;
+          return Visibility(
+            visible: visible,
+            child: Transform.scale(
+              scale: enlarge.value,
+              child: childRentangle,
+            ),
+          );
+        },
       ),
     );
   }
@@ -131,7 +133,7 @@ class _CustomSliverAppBar extends ConsumerWidget {
 
         if (scrolled) {
           if (isDark) {
-            color = Colors.black;
+            color = Colors.white;
           } else {
             color = Colors.black;
           }
@@ -229,16 +231,42 @@ class _CustomSliverAppBar extends ConsumerWidget {
   }
 }
 
-class _PostDetails extends ConsumerWidget {
+class _PostDetails extends ConsumerStatefulWidget {
   const _PostDetails();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _PostDetailsState createState() => _PostDetailsState();
+}
+
+class _PostDetailsState extends ConsumerState<_PostDetails>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> move;
+  @override
+  void initState() {
+    controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 200));
+
+    move = Tween(begin: 20.0, end: 0.0).animate(
+      CurvedAnimation(parent: controller, curve: Curves.ease),
+    );
+    controller.addListener(() {
+      if (kDebugMode) {
+        print('Status: ${controller.status}');
+      }
+    });
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final title = Theme.of(context).textTheme.copyWith(
         titleLarge: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         titleMedium:
             const TextStyle(fontWeight: FontWeight.bold, fontSize: 15));
-    final animationController = ref.read(homeModelProvider).controller;
+    // final animationController = ref.read(homeModelProvider).controller;
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -275,22 +303,30 @@ class _PostDetails extends ConsumerWidget {
           VisibilityDetector(
             key: const Key('my-widget-key'),
             onVisibilityChanged: (visibilityInfo) {
-              if (visibilityInfo.visibleFraction >= 1) {
+              if (visibilityInfo.visibleFraction >= 1.0) {
+                controller.forward();
                 ref.read(homeModelProvider.notifier).controller.forward();
               } else {
                 ref.read(homeModelProvider.notifier).controller.reverse();
+                controller.reverse();
               }
             },
-            child: AnimatedBuilder(
-              animation: animationController,
-              child: const StickButton(rounded: true),
-              builder: (context, childRentangle) => Transform.scale(
-                scale: animationController.value,
-                child: (animationController.value != 0.9
-                    ? childRentangle
-                    : const SizedBox()),
-              ),
-            ),
+            child: const SizedBox(height: 1, width: 1),
+          ),
+          AnimatedBuilder(
+            animation: controller,
+            child: const StickButton(rounded: true),
+            builder: (context, childRentangle) {
+              final bool visible = move.value < 20.0 ? true : false;
+              print(visible);
+              return Visibility(
+                visible: visible,
+                child: Transform.translate(
+                  offset: Offset(0, move.value),
+                  child: childRentangle,
+                ),
+              );
+            },
           ),
           const SizedBox(height: 100),
         ],

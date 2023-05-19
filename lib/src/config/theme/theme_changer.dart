@@ -40,7 +40,11 @@ class ThemeChanger extends ChangeNotifier {
     return ThemeData(
       fontFamily: 'EncodeSansSemiCondensed',
       useMaterial3: true,
-      canvasColor: const Color(0xfff5f6f8),
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        scrolledUnderElevation: 1.0,
+        surfaceTintColor: Color(0xfff5f6f8),
+      ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: Color(0xff646569),
         unselectedItemColor: Colors.grey,

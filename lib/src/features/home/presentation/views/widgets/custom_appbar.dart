@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ionicons/ionicons.dart';
@@ -22,12 +21,10 @@ class CustomAppBar extends ConsumerWidget {
           children: [
             GestureDetector(
               onTap: () {
-                if (kDebugMode) {
-                  showSearch(
-                    context: context,
-                    delegate: SearchHomeDelegate(),
-                  );
-                }
+                showSearch(
+                  context: context,
+                  delegate: SearchHomeDelegate(),
+                );
               },
               child: Container(
                 width: size.width * .7,

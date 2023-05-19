@@ -46,6 +46,7 @@ dependencies:
   ionicons: ^0.2.2
   local_hero: ^0.2.0
   permission_handler: ^10.2.0
+  sticky_headers: ^0.3.0+2
   visibility_detector: ^0.4.0+2
 
 dev_dependencies:
