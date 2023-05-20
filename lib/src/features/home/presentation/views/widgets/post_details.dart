@@ -31,7 +31,7 @@ class PostDetailsState extends ConsumerState<PostDetails>
   @override
   void initState() {
     animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 100));
+        vsync: this, duration: const Duration(milliseconds: 30));
 
     enlarge = Tween(begin: 1.0, end: 0.8).animate(animationController);
     opacity = Tween(begin: 1.0, end: 0.0).animate(animationController);
@@ -311,22 +311,20 @@ class _PostDetailsState extends ConsumerState<_PostDetails>
                 controller.reverse();
               }
             },
-            child: const SizedBox(height: 1, width: 1),
-          ),
-          AnimatedBuilder(
-            animation: controller,
-            child: const StickButton(rounded: true),
-            builder: (context, childRentangle) {
-              final bool visible = move.value < 20.0 ? true : false;
-              print(visible);
-              return Visibility(
-                visible: visible,
-                child: Transform.translate(
-                  offset: Offset(0, move.value),
-                  child: childRentangle,
-                ),
-              );
-            },
+            child: AnimatedBuilder(
+              animation: controller,
+              child: const StickButton(rounded: true),
+              builder: (context, childRentangle) {
+                final double visible = move.value < 20.0 ? 1.0 : 0.0;
+                return Opacity(
+                  opacity: visible,
+                  child: Transform.translate(
+                    offset: Offset(0, move.value),
+                    child: childRentangle,
+                  ),
+                );
+              },
+            ),
           ),
           const SizedBox(height: 100),
         ],

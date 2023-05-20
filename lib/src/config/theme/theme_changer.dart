@@ -70,6 +70,11 @@ class ThemeChanger extends ChangeNotifier {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        scrolledUnderElevation: 1.0,
+        surfaceTintColor: Color(0xff1b1b1b),
+      ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: Color(0xffcbccce),
         unselectedItemColor: Colors.grey,
