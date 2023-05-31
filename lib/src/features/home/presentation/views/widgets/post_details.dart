@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_google_street_view/flutter_google_street_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -512,9 +513,30 @@ class _LocalInformation extends StatelessWidget {
                   color: Colors.white)),
         ),
         const SizedBox(height: 15),
-        const SizedBox(
+        SizedBox(
           height: 200,
-          child: MapViewWidget(preview: true),
+          // child: MapViewWidget(preview: true),
+          child: Stack(
+            children: [
+              FlutterGoogleStreetView(
+                initPos: const LatLng(37.769263, -122.450727),
+                initSource: StreetViewSource.outdoor,
+                initBearing: 30,
+                initTilt: 30,
+                initZoom: 1.5,
+                onStreetViewCreated: (controller) async {
+                  controller.animateTo(
+                    duration: 50,
+                    camera: StreetViewPanoramaCamera(
+                      bearing: 15,
+                      tilt: 10,
+                      zoom: 3,
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         )
       ],
     );
